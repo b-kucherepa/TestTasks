@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TestTasks.SortTests
+﻿namespace TestTasks.SortTests
 {
     /// <summary>
     /// This modified bubble sort algorithm includes an iteration limit, which is set 
@@ -14,9 +12,9 @@ namespace TestTasks.SortTests
     /// hovewer it can be up to twice as fast as the non-optimized bubble sort.
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class BubbleOptimizedSorter : ArraySorter
+    internal class BubbleOptimizedSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             //defines the limit for the right end
             int rightBound = array.Length - 1;
@@ -27,9 +25,9 @@ namespace TestTasks.SortTests
                 int newBound = 0;
                 for (int i = 0; i < rightBound; i++)
                 {
-                    if (array[i] > array[i+1])
+                    if (array[i] > array[i + 1])
                     {
-                        (array[i], array[i+1]) = (array[i+1], array[i]);
+                        (array[i], array[i + 1]) = (array[i + 1], array[i]);
                         newBound = i;
                     }
                 }

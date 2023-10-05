@@ -1,10 +1,4 @@
-﻿using System.Drawing;
-using System.Globalization;
-using System.Reflection.Emit;
-using System.Reflection;
-using System.Xml.Linq;
-
-namespace TestTasks.SortTests
+﻿namespace TestTasks.SortTests
 {
     /// <summary>
     /// Quicksort was developed by British computer scientist Tony Hoare in 1959 and published in 1961.
@@ -21,11 +15,11 @@ namespace TestTasks.SortTests
     /// but in average cases it's around θ(n * log2(n)), while in the best case it's O(n).
     /// The biggest possible space complexity (maximal usage of memory) is Ω(log2(n)).
     /// </remarks>
-    internal class HoareQuickSorter : ArraySorter
+    internal class HoareQuickSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
-            return QuicksortProcedure(array, 0, array.Length-1);
+            return QuicksortProcedure(array, 0, array.Length - 1);
         }
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
@@ -90,7 +84,7 @@ namespace TestTasks.SortTests
                 /* swaps the left and right elements currently being "scanned" forcibly because 
                  * at least one of the elements is on the wrong side of the pivot (while 
                  * the second element is also on the wrong side or equal to the pivot): */
-                (array[leftIndex],array[rightIndex]) = (array[rightIndex],array[leftIndex]); 
+                (array[leftIndex], array[rightIndex]) = (array[rightIndex], array[leftIndex]);
             }
         }
     }

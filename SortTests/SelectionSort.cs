@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace TestTasks.SortTests
+﻿namespace TestTasks.SortTests
 {
     /// <summary>
     /// The easiest type of sort. Checks all unsorted elements on the right side of array,
@@ -11,9 +9,9 @@ namespace TestTasks.SortTests
     /// The biggest possible space complexity (maximal usage of memory) is O(1).
     /// </remarks>
 
-    internal class SelectionSorter : ArraySorter
+    internal class SelectionSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             //The outer FOR loop iterates through every element of the array except the last one
             for (int leftIndex = 0; leftIndex < array.Length - 1; leftIndex++)

@@ -11,9 +11,9 @@
     /// but in average cases it's around θ(n * log2(n)), while in the best case it's O(n).
     /// The biggest possible space complexity (maximal usage of memory) is Ω(log2(n)).
     /// </remarks>
-    internal class LomutoQuickSorter : ArraySorter
+    internal class LomutoQuickSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             return QuicksortProcedure(array, 0, array.Length - 1);
         }

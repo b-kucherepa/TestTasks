@@ -1,4 +1,4 @@
-﻿namespace TestTasks.DIY
+﻿namespace TestTasks.DIYClasses
 {
     public class SinglyLinkedList<T>
     {
@@ -85,20 +85,6 @@
             }
 
             return indexedNode;
-        }
-    }
-
-    public class SinglyNode<T>
-    {
-        private T _data;
-        public T Data { get => _data; set => _data = value; }
-
-        private SinglyNode<T>? _next = null;
-        internal SinglyNode<T>? Next { get => _next; set => _next = value; }
-
-        internal SinglyNode(T dataReference)
-        {
-            _data = dataReference;
         }
     }
 }

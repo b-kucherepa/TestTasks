@@ -8,9 +8,9 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2).
     /// The biggest possible space complexity (maximal usage of memory) is O(1).
     /// </remarks>
-    internal class CocktailShakerSorter : ArraySorter
+    internal class CocktailShakerSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             //defines limits for both ends
             int leftBound = 0;

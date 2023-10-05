@@ -10,9 +10,9 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n * log2(n)).
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class MergeSorter : ArraySorter
+    internal class MergeSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
 
             int count = array.Length;
@@ -27,8 +27,8 @@
                 int[] leftHalf = GetSubArray(array, 0, half);
                 int[] rightHalf = GetSubArray(array, half, count - half);
 
-                int[] subLeftHalf = Sort(leftHalf);
-                int[] subRightHalf = Sort(rightHalf);
+                int[] subLeftHalf = Begin(leftHalf);
+                int[] subRightHalf = Begin(rightHalf);
 
                 return MergeFromMinToMax(subLeftHalf, subRightHalf);
             }

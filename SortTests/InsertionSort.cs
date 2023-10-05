@@ -9,9 +9,9 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class InsertionSorter : ArraySorter
+    internal class InsertionSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             /* The outer FOR loop iterates through the unsorted array part
              * starting from the second element*/

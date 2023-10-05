@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Numerics;
-using System.Security.Cryptography;
-namespace TestTasks.SortTests
+﻿namespace TestTasks.SortTests
 {
     /// <summary>
     /// This is a slow, basic, and primarily educational implementation of a sorting algorithm.
@@ -13,9 +10,9 @@ namespace TestTasks.SortTests
     /// and the same is for average cases. That makes it one of the slowest sort algorithms.
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class BubbleSorter : ArraySorter
+    internal class BubbleSort : ArraySort
     {
-        public override int[] Sort(int[] array)
+        public override int[] Begin(int[] array)
         {
             bool isSwapped;
 
@@ -25,11 +22,11 @@ namespace TestTasks.SortTests
 
                 //doesn't include last element because it finds its place during
                 //the check of next to the last element:
-                for (int i = 0; i < array.Length-1; i++)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    if (array[i] > array[i+1])
+                    if (array[i] > array[i + 1])
                     {
-                        (array[i], array[i+1]) = (array[i+1], array[i]);
+                        (array[i], array[i + 1]) = (array[i + 1], array[i]);
                         isSwapped = true;
                     }
                 }

@@ -1,5 +1,3 @@
-using TestTasks;
-
 namespace TestTasks.TestingQuestions.StringsAndArrays
 {
     public class UniquenessNoDataStructures : TestTask

@@ -38,32 +38,32 @@
             Console.WriteLine("> Enter 8 to use Lomuto's partition scheme quicksort,");
             Console.WriteLine("< Enter any other key to return.");
 
-            ArraySorter sorter;
+            ArraySort sort;
             switch (Console.ReadLine())
             {
                 case "1":
-                    sorter = new MergeSorter();
+                    sort = new MergeSort();
                     break;
                 case "2":
-                    sorter = new InsertionSorter();
+                    sort = new InsertionSort();
                     break;
                 case "3":
-                    sorter = new SelectionSorter();
+                    sort = new SelectionSort();
                     break;
                 case "4":
-                    sorter = new BubbleSorter();
+                    sort = new BubbleSort();
                     break;
                 case "5":
-                    sorter = new BubbleOptimizedSorter();
+                    sort = new BubbleOptimizedSort();
                     break;
                 case "6":
-                    sorter = new CocktailShakerSorter();
+                    sort = new CocktailShakerSort();
                     break;
                 case "7":
-                    sorter = new HoareQuickSorter();
+                    sort = new HoareQuickSort();
                     break;
                 case "8":
-                    sorter = new LomutoQuickSorter();
+                    sort = new LomutoQuickSort();
                     break;
                 default:
                     return;
@@ -72,7 +72,7 @@
             Console.WriteLine("\n>>>TEST NUMBER " + testNumber + "<<<\n");
             Program.PrintArrayData(testArray, "\n-Unsorted:-");
 
-            int[] sortedArray = sorter.Sort(testArray);
+            int[] sortedArray = sort.Begin(testArray);
             Program.PrintArrayData(sortedArray, "\n-Sorted:-");
 
             testNumber++;

@@ -1,6 +1,8 @@
-using TestTasks.DIYTests;
 using TestTasks.SortTests;
+using TestTasks.DIYTests;
 using TestTasks.TestingQuestions;
+
+using TestTasks.DIYClasses;
 
 namespace TestTasks
 {
@@ -49,7 +51,7 @@ namespace TestTasks
             Console.WriteLine();
         }
 
-        public static void PrintLinkedList(DIY.SinglyLinkedList<string> list,
+        public static void PrintLinkedList(SinglyLinkedList<string> list,
             string label)
         {
 
@@ -59,7 +61,7 @@ namespace TestTasks
 
             for (int i = 0; i < list.Count; i++)
             {
-                Console.Write($"{i}. {list[i].Data??"Missing node!"} => ");
+                Console.Write($"{i}. {list[i].Data ?? "Missing node!"} => ");
             }
 
             Console.WriteLine();

@@ -1,8 +1,8 @@
 ﻿namespace TestTasks.SortTests
 {
-    internal abstract class ArraySorter
+    internal abstract class ArraySort
     {
-        public virtual int[] Sort(int[] array)
+        public virtual int[] Begin(int[] array)
         {
             return array;
         }
