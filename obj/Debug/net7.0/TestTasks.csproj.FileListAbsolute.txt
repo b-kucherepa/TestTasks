@@ -1,0 +1,14 @@
+D:\Boris\Programs\Test tasks\bin\Debug\net7.0\TestTasks.exe
+D:\Boris\Programs\Test tasks\bin\Debug\net7.0\TestTasks.deps.json
+D:\Boris\Programs\Test tasks\bin\Debug\net7.0\TestTasks.runtimeconfig.json
+D:\Boris\Programs\Test tasks\bin\Debug\net7.0\TestTasks.dll
+D:\Boris\Programs\Test tasks\bin\Debug\net7.0\TestTasks.pdb
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.GeneratedMSBuildEditorConfig.editorconfig
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.AssemblyInfoInputs.cache
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.AssemblyInfo.cs
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.csproj.CoreCompileInputs.cache
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.dll
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\refint\TestTasks.dll
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.pdb
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\TestTasks.genruntimeconfig.cache
+D:\Boris\Programs\Test tasks\obj\Debug\net7.0\ref\TestTasks.dll

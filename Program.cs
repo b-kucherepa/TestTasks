@@ -59,7 +59,7 @@ namespace TestTasks
 
             for (int i = 0; i < list.Count; i++)
             {
-                Console.Write($"{i}. {list[i].Data} => ");
+                Console.Write($"{i}. {list[i].Data??"Missing node!"} => ");
             }
 
             Console.WriteLine();
