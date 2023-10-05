@@ -1,4 +1,6 @@
-using System;
+using TestTasks.DIYTests;
+using TestTasks.SortTests;
+using TestTasks.TestingQuestions;
 
 namespace TestTasks
 {
@@ -6,35 +8,61 @@ namespace TestTasks
     {
         public static void Main()
         {
-            TestTask task = new StringsAndArrays.UniquenessWithHash ();
-            
-            Console.WriteLine ("Select a test program to begin:");
-            Console.WriteLine ("> Enter 1 for string uniqueness program (using hash set),");
-            Console.WriteLine ("> Enter 2 for string uniqueness program" + 
-                "(using no special data structures),");
-            Console.WriteLine("> Enter 3 to test homemade singly linked list,");
-            Console.WriteLine ("> Enter any other key to exit.");
-            Console.WriteLine ();
+            Console.WriteLine();
+            Console.WriteLine("Select a category of tests:");
+            Console.WriteLine("> Enter 1 to test sort algorithms,");
+            Console.WriteLine("> Enter 2 to test homemade classes");
+            Console.WriteLine("> Enter 3 to test testing question solutions,");
+            Console.WriteLine("< Enter any other key to exit.");
+            Console.WriteLine();
 
+            TestSelection selection;
             switch (Console.ReadLine())
             {
                 case "1":
-                    task = new StringsAndArrays.UniquenessWithHash();
+                    selection = new SortSelection();
                     break;
                 case "2":
-                    task = new StringsAndArrays.UniquenessNoDataStructures();
+                    selection = new DIYTestSelection();
                     break;
                 case "3":
-                    task = new DIYTests.SinglyLinkedListTest();
+                    selection = new TestingSolutionSelection();
                     break;
                 default:
                     Environment.Exit(0);
-                    break;
+                    return;
             }
 
-            task.Begin();
+            selection.Select();
 
             Main();
+        }
+
+        public static void PrintArrayData(int[] array, string label = "")
+        {
+            Console.WriteLine(label + "\n");
+            Console.WriteLine("Length: " + array.Length + ".");
+            foreach (int i in array)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine();
+        }
+
+        public static void PrintLinkedList(DIY.SinglyLinkedList<string> list,
+            string label)
+        {
+
+            Console.WriteLine();
+            Console.WriteLine(label);
+            Console.WriteLine("Count: " + list.Count);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write($"{i}. {list[i].Data} => ");
+            }
+
+            Console.WriteLine();
         }
     }
 }

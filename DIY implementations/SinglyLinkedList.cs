@@ -1,4 +1,4 @@
-﻿namespace DIY
+﻿namespace TestTasks.DIY
 {
     public class SinglyLinkedList<T>
     {
@@ -11,7 +11,7 @@
         public int Count => _nodesCount;
 
 
-        public SinglyNode<T> this[int index] => RetrieveNode(index);
+        public SinglyNode<T>? this[int index] => RetrieveNode(index);
 
         public SinglyLinkedList() { }
 
@@ -25,7 +25,7 @@
 
         public void AddFirst(T dataReference)
         {
-            SinglyNode<T> newNode = new(dataReference);
+            SinglyNode<T>? newNode = new(dataReference);
             newNode.Next = firstNode;
             firstNode = newNode;
             _nodesCount++;
@@ -41,8 +41,8 @@
 
         public void InsertAfter(int index, T dataReference)
         {
-            SinglyNode<T> beforeNode = RetrieveNode(index);
-            SinglyNode<T> newNode = new(dataReference);
+            SinglyNode<T>? beforeNode = RetrieveNode(index);
+            SinglyNode<T>? newNode = new(dataReference);
             newNode.Next = beforeNode.Next;
             beforeNode.Next = newNode;
             _nodesCount++;
@@ -51,8 +51,8 @@
 
         public void RemoveAt(int index)
         {
-            SinglyNode<T> beforeNode = RetrieveNode(index - 1);
-            SinglyNode<T> nodeAfter = beforeNode.Next.Next;
+            SinglyNode<T>? beforeNode = RetrieveNode(index - 1);
+            SinglyNode<T>? nodeAfter = beforeNode.Next.Next;
             beforeNode.Next = nodeAfter;
             _nodesCount--;
         }
@@ -60,8 +60,8 @@
 
         public void AddLast(T dataReference)
         {
-            SinglyNode<T> lastNode = RetrieveNode(_nodesCount - 1);
-            SinglyNode<T> newLastNode = new(dataReference);
+            SinglyNode<T>? lastNode = RetrieveNode(_nodesCount - 1);
+            SinglyNode<T>? newLastNode = new(dataReference);
             lastNode.Next = newLastNode;
             _nodesCount++;
         }
@@ -69,7 +69,7 @@
 
         public void RemoveLast()
         {
-            SinglyNode<T> beforeLastNode = RetrieveNode(_nodesCount - 2);
+            SinglyNode<T>? beforeLastNode = RetrieveNode(_nodesCount - 2);
             beforeLastNode.Next = null;
             _nodesCount--;
         }

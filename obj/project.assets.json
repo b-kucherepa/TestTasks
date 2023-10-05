@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Boris\\Programs\\Test tasks\\Test tasks.csproj",
-      "projectName": "Test tasks",
-      "projectPath": "D:\\Boris\\Programs\\Test tasks\\Test tasks.csproj",
+      "projectUniqueName": "D:\\Boris\\Programs\\Test tasks\\TestTasks.csproj",
+      "projectName": "TestTasks",
+      "projectPath": "D:\\Boris\\Programs\\Test tasks\\TestTasks.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "D:\\Boris\\Programs\\Test tasks\\obj\\",
       "projectStyle": "PackageReference",

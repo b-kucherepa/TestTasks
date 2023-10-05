@@ -1,27 +1,27 @@
 using TestTasks;
 
-namespace StringsAndArrays
+namespace TestTasks.TestingQuestions.StringsAndArrays
 {
     public class UniquenessWithHash : TestTask
     {
         public override void Begin()
         {
-            Console.WriteLine ();
+            Console.WriteLine();
             Console.WriteLine("Enter a line to check:");
-            Console.WriteLine ();
-            
+            Console.WriteLine();
+
             string inputString = Console.ReadLine() ?? "";
 
             if (CheckCharUniqueness(inputString))
             {
-                Console.WriteLine ("The string has no duplicates!");
+                Console.WriteLine("The string has no duplicates!");
             }
             else
             {
-                Console.WriteLine ("Some characters in the string are repetitive...");
-            } 
+                Console.WriteLine("Some characters in the string are repetitive...");
+            }
 
-            Console.WriteLine ();
+            Console.WriteLine();
         }
 
         private bool CheckCharUniqueness(string s)
