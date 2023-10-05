@@ -3,7 +3,7 @@
     public class SortSelection : TestSelection
     {
         private int testNumber = 1;
-        private int[] testArray;
+        private int[] testArray = NewTestArray(20);
 
         public override void Select()
         {
@@ -81,7 +81,7 @@
         }
 
 
-        private int[] NewTestArray(int length)
+        private static int[] NewTestArray(int length)
         {
             var testArray = new int[length];
 
