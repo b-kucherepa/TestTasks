@@ -1,6 +1,8 @@
-namespace Interview
+using TestTasks;
+
+namespace StringsAndArrays
 {
-    public class StringUniquenessCheckerNoDataStructures : Test
+    public class UniquenessWithHash : TestTask
     {
         public override void Begin()
         {
@@ -9,7 +11,6 @@ namespace Interview
             Console.WriteLine ();
             
             string inputString = Console.ReadLine() ?? "";
-            Console.WriteLine ();
 
             if (CheckCharUniqueness(inputString))
             {
@@ -25,14 +26,17 @@ namespace Interview
 
         private bool CheckCharUniqueness(string s)
         {
-            for (int ch=0; ch < s.Length; ch++)
+            var charOccurrences = new HashSet<char>();
+
+            foreach (char c in s)
             {
-                for (int comp=ch+1; comp < s.Length; comp++)
+                if (charOccurrences.Contains(c))
                 {
-                    if (s[comp]==s[ch])
-                    {
-                        return false;
-                    }
+                    return false;
+                }
+                else
+                {
+                    charOccurrences.Add(c);
                 }
             }
             return true;
