@@ -8,12 +8,12 @@
     /// </summary>
     /// <remarks>
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// but in average cases it's around θ(n * log2(n)), while in the best case it's O(n).
-    /// The biggest possible space complexity (maximal usage of memory) is Ω(log2(n)).
+    /// but in average cases it's around θ(n * log2(n)), while in the best case it's Ω(n).
+    /// The biggest possible space complexity (maximal usage of memory) is O(log2(n)).
     /// </remarks>
     internal class LomutoQuickSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
             return QuicksortProcedure(array, 0, array.Length - 1);
         }

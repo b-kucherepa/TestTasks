@@ -1,7 +1,8 @@
 ﻿namespace TestTasks.SortTests
 {
     /// <summary>
-    /// Quicksort was developed by British computer scientist Tony Hoare in 1959 and published in 1961.
+    /// Quicksort was developed by British computer scientist Tony Hoare in 1959 and 
+    /// published in 1961.
     /// The current realization uses Hoare's partition scheme.
     /// It chooses a random pivot and compares all other elements, placing lesser ones 
     /// on the left side and bigger ones on the right side of the pivot. 
@@ -12,12 +13,12 @@
     /// </summary>
     /// <remarks>
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// but in average cases it's around θ(n * log2(n)), while in the best case it's O(n).
-    /// The biggest possible space complexity (maximal usage of memory) is Ω(log2(n)).
+    /// but in average cases it's around θ(n * log2(n)), while in the best case it's Ω(n).
+    /// The biggest possible space complexity (maximal usage of memory) is O(log2(n)).
     /// </remarks>
     internal class HoareQuickSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
             return QuicksortProcedure(array, 0, array.Length - 1);
         }

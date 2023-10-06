@@ -2,7 +2,7 @@
 {
     internal abstract class ArraySort
     {
-        public virtual int[] Begin(int[] array)
+        public virtual int[] ReturnSorted(int[] array)
         {
             return array;
         }

@@ -1,10 +1,12 @@
-﻿namespace TestTasks.DIYTests
+﻿using TestTasks.DIYClasses;
+
+namespace TestTasks.DIYTests
 {
-    internal class SinglyLinkedListTest : TestTasks.TestTask
+    internal class SinglyLinkedListTest : TestTask
     {
         public override void Begin()
         {
-            DIY.SinglyLinkedList<string> list = new("I'm the first!");
+            SinglyLinkedList<string> list = new("I'm the first!");
             Program.PrintLinkedList(list, "On creation");
 
             list.AddLast("I'm the last!");
@@ -19,10 +21,13 @@
             list.InsertAfter(2, "I've cut in, sorry guys!");
             Program.PrintLinkedList(list, "New node inserted");
 
-            list.RemoveAt(3);
-            Program.PrintLinkedList(list, "Removed new node (there's no place for such insolence!)");
-
             Console.WriteLine();
+            Console.WriteLine("Found the inserted node. It says: " +
+                $"{list.Find("I've cut in, sorry guys!").Data} Shame on it!");
+
+            list.RemoveAt(3);
+            Program.PrintLinkedList(list, "Removed that node from position 3 (there's no place for such insolence!)");
+
             list.InsertAfter(2, "There is more of us!");
             list.InsertAfter(2, "There is more of us!");
             list.InsertAfter(2, "There is more of us!");

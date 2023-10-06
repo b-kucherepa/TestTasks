@@ -8,4 +8,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DIYClasses\BinaryHeap.cs" />
+    <Compile Remove="DIYClasses\BinaryNode.cs" />
+  </ItemGroup>
+
 </Project>

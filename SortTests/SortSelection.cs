@@ -28,7 +28,6 @@
 
             Console.WriteLine("Select a sort algorithm to test:");
             Console.WriteLine("> Enter 1 to use merge sort,");
-            Console.WriteLine("> Enter 1 to use merge sort,");
             Console.WriteLine("> Enter 2 to use insertion sort,");
             Console.WriteLine("> Enter 3 to use selection sort,");
             Console.WriteLine("> Enter 4 to use bubble sort,");
@@ -36,6 +35,7 @@
             Console.WriteLine("> Enter 6 to use cocktail shaker sort,");
             Console.WriteLine("> Enter 7 to use Hoare's partition scheme quicksort,");
             Console.WriteLine("> Enter 8 to use Lomuto's partition scheme quicksort,");
+            Console.WriteLine("> Enter 9 to use heap sort,");
             Console.WriteLine("< Enter any other key to return.");
 
             ArraySort sort;
@@ -65,6 +65,9 @@
                 case "8":
                     sort = new LomutoQuickSort();
                     break;
+                case "9":
+                    sort = new HeapSort();
+                    break;
                 default:
                     return;
             }
@@ -72,7 +75,7 @@
             Console.WriteLine("\n>>>TEST NUMBER " + testNumber + "<<<\n");
             Program.PrintArrayData(testArray, "\n-Unsorted:-");
 
-            int[] sortedArray = sort.Begin(testArray);
+            int[] sortedArray = sort.ReturnSorted(testArray);
             Program.PrintArrayData(sortedArray, "\n-Sorted:-");
 
             testNumber++;

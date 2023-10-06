@@ -86,5 +86,20 @@
 
             return indexedNode;
         }
+
+        public SinglyNode<T>? Find(T dataReference)
+        {
+            SinglyNode<T>? visitedNode = firstNode;
+
+            while (visitedNode.Next is not null)
+            {
+                if (EqualityComparer<T>.Default.Equals(visitedNode.Data, dataReference))
+                {
+                    return visitedNode;
+                }
+                visitedNode = visitedNode.Next;
+            }
+            return null;
+        }
     }
 }

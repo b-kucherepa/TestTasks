@@ -10,7 +10,7 @@
     /// </remarks>
     internal class CocktailShakerSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
             //defines limits for both ends
             int leftBound = 0;

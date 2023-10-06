@@ -12,7 +12,7 @@
     /// </remarks>
     internal class BubbleSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
             bool isSwapped;
 

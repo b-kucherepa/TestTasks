@@ -12,7 +12,7 @@
     /// </remarks>
     internal class MergeSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
 
             int count = array.Length;
@@ -22,13 +22,13 @@
             }
             else
             {
-                int half = count / 2;
+                int midpoint = count / 2;
 
-                int[] leftHalf = GetSubArray(array, 0, half);
-                int[] rightHalf = GetSubArray(array, half, count - half);
+                int[] leftHalf = GetSubArray(array, 0, midpoint);
+                int[] rightHalf = GetSubArray(array, midpoint, count - midpoint);
 
-                int[] subLeftHalf = Begin(leftHalf);
-                int[] subRightHalf = Begin(rightHalf);
+                int[] subLeftHalf = ReturnSorted(leftHalf);
+                int[] subRightHalf = ReturnSorted(rightHalf);
 
                 return MergeFromMinToMax(subLeftHalf, subRightHalf);
             }

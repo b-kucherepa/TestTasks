@@ -11,7 +11,7 @@
     /// </remarks>
     internal class InsertionSort : ArraySort
     {
-        public override int[] Begin(int[] array)
+        public override int[] ReturnSorted(int[] array)
         {
             /* The outer FOR loop iterates through the unsorted array part
              * starting from the second element*/
