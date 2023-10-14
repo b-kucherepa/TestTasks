@@ -91,7 +91,7 @@
             Random random = new();
             for (int i = 0; i < testArray.Length; i++)
             {
-                testArray[i] = random.Next(5000);
+                testArray[i] = random.Next(100);
             }
 
             return testArray;

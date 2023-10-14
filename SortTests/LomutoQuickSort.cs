@@ -27,7 +27,7 @@
 
             int partition = PartitionSort(array, leftBound, rightBound);
             array = QuicksortProcedure(array, leftBound, partition-1);
-            array = QuicksortProcedure(array, partition + 1, rightBound);
+            array = QuicksortProcedure(array, partition, rightBound);
 
             return array;
         }
@@ -40,7 +40,7 @@
             //temporaty pivot index:
             int newPivotIndex = leftBound - 1;
 
-            for (int i = leftBound; i < rightBound - 1; i++)
+            for (int i = leftBound; i < rightBound; i++)
             {
                 if (array[i] <= pivotElement)
                 {
