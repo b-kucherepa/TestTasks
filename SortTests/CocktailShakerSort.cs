@@ -8,10 +8,11 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2).
     /// The biggest possible space complexity (maximal usage of memory) is O(1).
     /// </remarks>
-    internal class CocktailShakerSort : ArraySort
+    internal class CocktailShakerSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
             //defines limits for both ends
             int leftBound = 0;
             int rightBound = array.Length - 1;

@@ -1,16 +1,19 @@
-﻿namespace TestTasks.SortTests
+﻿using System.Diagnostics;
+
+namespace TestTasks.SortTests
 {
     public class SortSelection : TestSelection
     {
-        private int testNumber = 1;
-        private int[] testArray = NewTestArray(20);
+        private int _testNumber = 1;
+        private int[] _testArray = NewTestArray(20);
+        private Stopwatch _timer = new Stopwatch();
 
         public override void Select()
         {
             Console.WriteLine();
-            Console.WriteLine("Enter the random test array length (1-10000) to generate one,");
+            Console.WriteLine("Enter the random test array length (1-100000) to generate one,");
 
-            if (testNumber == 1)
+            if (_testNumber == 1)
             {
                 Console.WriteLine("or enter any other key to use an array " +
                     "of the default length 50");
@@ -20,10 +23,10 @@
                 Console.WriteLine("or enter any other key to keep the same array");
             }
 
-            int selectedOption = ReadNumberInLimit(1, 10000);
+            int selectedOption = ReadNumberInLimit(1, 100000);
             if (selectedOption != -1)
             {
-                testArray = NewTestArray(selectedOption);
+                _testArray = NewTestArray(selectedOption);
             }
 
             Console.WriteLine("Select a sort algorithm to test:");
@@ -38,7 +41,7 @@
             Console.WriteLine("> Enter 9 to use heap sort,");
             Console.WriteLine("< Enter any other key to return.");
 
-            ArraySort sort;
+            Sort sort;
             switch (Console.ReadLine())
             {
                 case "1":
@@ -72,13 +75,17 @@
                     return;
             }
 
-            Console.WriteLine("\n>>>TEST NUMBER " + testNumber + "<<<\n");
-            Program.PrintArrayData(testArray, "\n-Unsorted:-");
+            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
+            Program.PrintArrayData(_testArray, "\n-Unsorted:-");
 
-            int[] sortedArray = sort.ReturnSorted(testArray);
+            _timer.Restart();
+            int[] sortedArray = sort.ReturnSorted(_testArray);
+            _timer.Stop();
             Program.PrintArrayData(sortedArray, "\n-Sorted:-");
+            Console.WriteLine("\nAn approximate execution time (more precise with bigger arrays): " 
+                + _timer.Elapsed + "ms.\n");
 
-            testNumber++;
+            _testNumber++;
 
             Select();
         }
@@ -86,15 +93,15 @@
 
         private static int[] NewTestArray(int length)
         {
-            var testArray = new int[length];
+            var _testArray = new int[length];
 
             Random random = new();
-            for (int i = 0; i < testArray.Length; i++)
+            for (int i = 0; i < _testArray.Length; i++)
             {
-                testArray[i] = random.Next(100);
+                _testArray[i] = random.Next(100);
             }
 
-            return testArray;
+            return _testArray;
         }
 
 

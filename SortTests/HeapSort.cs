@@ -12,10 +12,11 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n * log2(n)).
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class HeapSort : ArraySort
+    internal class HeapSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
             int count = array.Length;
             int midpoint = count / 2;
 

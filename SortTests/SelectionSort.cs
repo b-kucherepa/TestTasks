@@ -9,10 +9,11 @@
     /// The biggest possible space complexity (maximal usage of memory) is O(1).
     /// </remarks>
 
-    internal class SelectionSort : ArraySort
+    internal class SelectionSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
             //The outer FOR loop iterates through every element of the array except the last one
             for (int leftIndex = 0; leftIndex < array.Length - 1; leftIndex++)
             {

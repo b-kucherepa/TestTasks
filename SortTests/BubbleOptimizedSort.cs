@@ -12,10 +12,11 @@
     /// hovewer it can be up to twice as fast as the non-optimized bubble sort.
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class BubbleOptimizedSort : ArraySort
+    internal class BubbleOptimizedSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
             //defines the limit for the right end
             int rightBound = array.Length - 1;
 

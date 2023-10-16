@@ -16,10 +16,11 @@
     /// but in average cases it's around θ(n * log2(n)), while in the best case it's Ω(n).
     /// The biggest possible space complexity (maximal usage of memory) is O(log2(n)).
     /// </remarks>
-    internal class HoareQuickSort : ArraySort
+    internal class HoareQuickSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
             return QuicksortProcedure(array, 0, array.Length - 1);
         }
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)

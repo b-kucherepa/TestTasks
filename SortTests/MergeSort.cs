@@ -10,69 +10,76 @@
     /// The biggest possible asymptotic complexity (maximal execution time) is O(n * log2(n)).
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class MergeSort : ArraySort
+    internal class MergeSort : Sort
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] ReturnSorted(int[] inputArray)
         {
+            int[] array = inputArray;
+            return Split(array, 0, array.Length-1);
+        }
 
-            int count = array.Length;
-            if (count <= 1)
+
+        private int[] Split(int[] array, int leftBound, int rightBound)
+        {
+            //if two bounds are equal, it means array consists of only 1 element
+            //(which is == leftBound == rightBound). One-element array is sorted
+            //by default so the method returns it:
+            if (rightBound == leftBound)
             {
-                return array;
+                return new int[] { array[leftBound] };
             }
             else
+            //continues splitting...
             {
-                int midpoint = count / 2;
+                int midPoint = (rightBound + leftBound) / 2;
 
-                int[] leftHalf = GetSubArray(array, 0, midpoint);
-                int[] rightHalf = GetSubArray(array, midpoint, count - midpoint);
-
-                int[] subLeftHalf = ReturnSorted(leftHalf);
-                int[] subRightHalf = ReturnSorted(rightHalf);
-
-                return MergeFromMinToMax(subLeftHalf, subRightHalf);
+                int[] leftHalf = Split(array, leftBound, midPoint);
+                int[] rightHalf = Split(array, midPoint + 1, rightBound);
+                
+                //...to merge all parts eventually and return recursively for merging further:
+                return SortAndMerge(leftHalf, rightHalf);
             }
         }
 
 
-        private int[] MergeFromMinToMax(int[] aArray, int[] bArray)
+        private int[] SortAndMerge(int[] leftArray, int[] rightArray)
         {
-            int[] mergedArray = new int[aArray.Length + bArray.Length];
+            int[] combinedArray = new int[leftArray.Length + rightArray.Length];
 
             /* The FOR loop sees two smaller arrays as two packs of already arranged elements. 
              * In each pack, the smaller elements are always closer to the pack opening. 
              * Every iteration, the loop takes the smallest element it "sees" from 
              * the pack openings of two arrays and adds it into the one big arranged array.*/
 
-            int aIndex = 0;
+            int lIndex = 0;
             int bIndex = 0;
 
-            for (int mIndex = 0; mIndex < mergedArray.Length; mIndex++)
+            for (int cIndex = 0; cIndex < combinedArray.Length; cIndex++)
             {
-                /* If the aArray hasn't been depleted 
-                 * and the current aArray element is lesser than the current bArray element, 
-                 * or if the bArray has been depleted, 
-                 * the current aArray value is added to the result array 
-                 * as the next smallest number, and the aArray index is incremented.*/
-                if ((aIndex < aArray.Length)
-                    && ((bIndex >= bArray.Length) || (aArray[aIndex] < bArray[bIndex])))
+                /* If the leftArray hasn't been depleted 
+                 * and the current leftArray element is lesser than the current rightArray element, 
+                 * or if the rightArray has been depleted, 
+                 * the current leftArray value is added to the result array 
+                 * as the next smallest number, and the leftArray index is incremented.*/
+                if ((lIndex < leftArray.Length)
+                    && ((bIndex >= rightArray.Length) || (leftArray[lIndex] < rightArray[bIndex])))
                 {
-                    mergedArray[mIndex] = aArray[aIndex];
-                    aIndex++;
+                    combinedArray[cIndex] = leftArray[lIndex];
+                    lIndex++;
                     continue;
                 }
 
-                //this condition performs the same operation for the bArray
-                if ((bIndex < bArray.Length)
-                    && ((aIndex >= aArray.Length) || (bArray[bIndex] <= aArray[aIndex])))
+                //this condition performs the same operation for the rightArray
+                if ((bIndex < rightArray.Length)
+                    && ((lIndex >= leftArray.Length) || (rightArray[bIndex] <= leftArray[lIndex])))
                 {
-                    mergedArray[mIndex] = bArray[bIndex];
+                    combinedArray[cIndex] = rightArray[bIndex];
                     bIndex++;
                     continue;
                 }
             }
 
-            return mergedArray;
+            return combinedArray;
         }
     }
 }

@@ -10,7 +10,7 @@
     /// and the same is for average cases. That makes it one of the slowest sort algorithms.
     /// The biggest possible space complexity (maximal usage of memory) is O(n).
     /// </remarks>
-    internal class BubbleSort : ArraySort
+    internal class BubbleSort : Sort
     {
         public override int[] ReturnSorted(int[] array)
         {
