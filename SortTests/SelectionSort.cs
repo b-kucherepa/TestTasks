@@ -5,8 +5,14 @@
     /// finds the lowest value and adds it to the sorted part on the left side of array.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// The biggest possible space complexity (maximal usage of memory) is O(1).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N^2) comparisons, O(N) swaps.
+    /// Average asymptotic complexity is
+    /// ϴ(N^2) comparisons, ϴ(N) swaps.
+    /// Best-case asymptotic complexity is 
+    /// Ω(N) comparisons, Ω(1) swaps.
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(1).
     /// </remarks>
 
     internal class SelectionSort : Sort

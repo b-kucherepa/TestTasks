@@ -6,8 +6,14 @@
     /// to find the right position to insert it.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// The biggest possible space complexity (maximal usage of memory) is O(n).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N^2) comparisons, O(N^2) swaps.
+    /// Average asymptotic complexity is
+    /// ϴ(N^2), ϴ(N^2) swaps.
+    /// Best-case asymptotic complexity is 
+    /// Ω(N) comparisons, Ω(1) swaps.
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(N) total, O(1) auxiliary.
     /// </remarks>
     internal class InsertionSort : Sort
     {

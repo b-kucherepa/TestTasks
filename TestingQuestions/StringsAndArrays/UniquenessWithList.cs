@@ -4,22 +4,18 @@ namespace TestTasks.TestingQuestions.StringsAndArrays
     {
         public override void Begin()
         {
-            Console.WriteLine();
-            Console.WriteLine("Enter a line to check:");
-            Console.WriteLine();
+            Console.WriteLine("\nEnter a line to check:\n");
 
             string inputString = Console.ReadLine() ?? "";
 
             if (CheckCharUniqueness(inputString))
             {
-                Console.WriteLine("The string has no duplicates!");
+                Console.WriteLine("\nThe string has no duplicates!\n");
             }
             else
             {
-                Console.WriteLine("Some characters in the string are repetitive...");
+                Console.WriteLine("\nSome characters in the string are repetitive...\n");
             }
-
-            Console.WriteLine();
         }
 
         private bool CheckCharUniqueness(string s)

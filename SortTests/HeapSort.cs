@@ -9,8 +9,14 @@
     /// It partially brings this algorithm together with the merge sort.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n * log2(n)).
-    /// The biggest possible space complexity (maximal usage of memory) is O(n).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N * log2(N)).
+    /// Average asymptotic complexity is
+    /// ϴ(N * log2(N)).
+    /// Best-case asymptotic complexity is 
+    /// Ω(N * log2(N)) (distinct keys) or Ω(N) (equal keys).
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(N) total, O(1) auxiliary.
     /// </remarks>
     internal class HeapSort : Sort
     {

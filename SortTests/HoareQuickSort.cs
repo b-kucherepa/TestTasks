@@ -12,9 +12,14 @@
     /// the sorted groups it's connected with and merges them from the leaves to the root.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// but in average cases it's around θ(n * log2(n)), while in the best case it's Ω(n).
-    /// The biggest possible space complexity (maximal usage of memory) is O(log2(n)).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N^2).
+    /// Average asymptotic complexity is
+    /// ϴ(N * log2(N)).
+    /// Best-case asymptotic complexity is 
+    /// Ω(N) due to three-way partition and equal keys.
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// Ω(N * log2(N)).
     /// </remarks>
     internal class HoareQuickSort : Sort
     {

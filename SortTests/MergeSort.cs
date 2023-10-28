@@ -7,8 +7,14 @@
     /// using recursive calls to itself. It follows the "divide and conquer" paradigm.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n * log2(n)).
-    /// The biggest possible space complexity (maximal usage of memory) is O(n).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N * log2(N)).
+    /// Average asymptotic complexity is
+    /// ϴ(N * log2(N)).
+    /// Best-case asymptotic complexity is 
+    /// Ω(N * log2(N)) (typical) or Ω(N) (natural variant).
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(N) total, O(n) auxiliary typically but O(1) with linked lists.
     /// </remarks>
     internal class MergeSort : Sort
     {

@@ -5,8 +5,14 @@
     /// It contains the optimized bubble sorter insertion-alike improvment.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2).
-    /// The biggest possible space complexity (maximal usage of memory) is O(1).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N^2).
+    /// Average asymptotic complexity is
+    /// ϴ(N^2).
+    /// Best-case asymptotic complexity is 
+    /// Ω(N).
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(1).
     /// </remarks>
     internal class CocktailShakerSort : Sort
     {

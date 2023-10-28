@@ -8,9 +8,14 @@
     /// which separates the sorted part of the array as well.
     /// </summary>
     /// <remarks>
-    /// The biggest possible asymptotic complexity (maximal execution time) is O(n^2),
-    /// hovewer it can be up to twice as fast as the non-optimized bubble sort.
-    /// The biggest possible space complexity (maximal usage of memory) is O(n).
+    /// Worst-case asymptotic complexity (order of the execution time) is 
+    /// O(N^2) comparisons, O(N^2) swaps.
+    /// Average asymptotic complexity is
+    /// ϴ(N^2) comparisons, ϴ(N^2) swaps, however can be as twice as fast as the unoptimized version.
+    /// Best-case asymptotic complexity is 
+    /// Ω(N) comparisons, Ω(1) swaps.
+    /// Worst-case space complexity (order of the memory usage) is 
+    /// O(N) total, O(1) auxiliary.
     /// </remarks>
     internal class BubbleOptimizedSort : Sort
     {
