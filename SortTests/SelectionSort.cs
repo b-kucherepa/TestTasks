@@ -15,7 +15,7 @@
     /// O(1).
     /// </remarks>
 
-    internal class SelectionSort : Sort
+    internal class SelectionSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] inputArray)
         {

@@ -1,11 +1,8 @@
 ﻿namespace TestTasks.SortTests
 {
-    internal abstract class Sort
+    internal abstract class SortAlgorithm
     {
-        public virtual int[] ReturnSorted(int[] array)
-        {
-            return array;
-        }
+        public abstract int[] ReturnSorted(int[] array);
 
 
         internal static int[] GetSubArray(int[] array, int firstIndex, int length)

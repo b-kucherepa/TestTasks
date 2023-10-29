@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// It modifies bubble sort adding the backward movement to swapping iteration. 
-    /// It contains the optimized bubble sorter insertion-alike improvment.
+    /// It contains the optimized bubble sorter insertion-alike improvement.
     /// </summary>
     /// <remarks>
     /// Worst-case asymptotic complexity (order of the execution time) is 
@@ -14,7 +14,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(1).
     /// </remarks>
-    internal class CocktailShakerSort : Sort
+    internal class CocktailShakerSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] inputArray)
         {

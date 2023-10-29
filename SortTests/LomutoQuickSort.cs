@@ -16,7 +16,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// Ω(N).
     /// </remarks>
-    internal class LomutoQuickSort : Sort
+    internal class LomutoQuickSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] inputArray)
         {
@@ -43,7 +43,7 @@
             //sets partition pivot simply to right bound:
             int pivotElement = array[rightBound];
 
-            //temporaty pivot index:
+            //temporary pivot index:
             int newPivotIndex = leftBound - 1;
 
             for (int i = leftBound; i < rightBound; i++)

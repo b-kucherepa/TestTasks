@@ -39,9 +39,10 @@ namespace TestTasks.SortTests
             Console.WriteLine("> Enter 7 to use Hoare's partition scheme quicksort,");
             Console.WriteLine("> Enter 8 to use Lomuto's partition scheme quicksort,");
             Console.WriteLine("> Enter 9 to use heap sort,");
+            Console.WriteLine("> Enter 10 to use Shell sort,");
             Console.WriteLine("< Enter any other key to return.");
 
-            Sort sort;
+            SortAlgorithm sort;
             switch (Console.ReadLine())
             {
                 case "1":
@@ -70,6 +71,9 @@ namespace TestTasks.SortTests
                     break;
                 case "9":
                     sort = new HeapSort();
+                    break;
+                case "10":
+                    sort = new ShellSort();
                     break;
                 default:
                     return;

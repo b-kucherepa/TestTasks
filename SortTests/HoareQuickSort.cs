@@ -21,7 +21,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// Ω(N * log2(N)).
     /// </remarks>
-    internal class HoareQuickSort : Sort
+    internal class HoareQuickSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] inputArray)
         {

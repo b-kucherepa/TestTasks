@@ -15,7 +15,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(N) total, O(1) auxiliary.
     /// </remarks>
-    internal class BubbleSort : Sort
+    internal class BubbleSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] array)
         {

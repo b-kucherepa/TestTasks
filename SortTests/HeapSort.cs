@@ -18,7 +18,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(N) total, O(1) auxiliary.
     /// </remarks>
-    internal class HeapSort : Sort
+    internal class HeapSort : SortAlgorithm
     {
         public override int[] ReturnSorted(int[] inputArray)
         {
@@ -71,7 +71,7 @@
 
             /* if the largest element isn't the root, it means the heapifying
              * isn't incomplete yet. So it recursively calls itself to finish
-             * the arrangment appropriate for a binary heap:*/
+             * the arrangement appropriate for a binary heap:*/
             if (largest != root)
             {
                 //switches the root and the largest element and...
