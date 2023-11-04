@@ -7,6 +7,7 @@ namespace TestTasks.SortTests
         private int _testNumber = 1;
         private int[] _testArray = NewTestArray(20);
         private Stopwatch _timer = new Stopwatch();
+        private const int NUMBER_LIMIT = 10000;
 
         public override void Select()
         {
@@ -16,7 +17,7 @@ namespace TestTasks.SortTests
             if (_testNumber == 1)
             {
                 Console.WriteLine("or enter any other key to use an array " +
-                    "of the default length 50");
+                    "of the default length 20");
             }
             else
             {
@@ -40,6 +41,7 @@ namespace TestTasks.SortTests
             Console.WriteLine("> Enter 8 to use Lomuto's partition scheme quicksort,");
             Console.WriteLine("> Enter 9 to use heap sort,");
             Console.WriteLine("> Enter 10 to use Shell sort,");
+            Console.WriteLine("> Enter 11 to use radix sort,");
             Console.WriteLine("< Enter any other key to return.");
 
             SortAlgorithm sort;
@@ -75,6 +77,9 @@ namespace TestTasks.SortTests
                 case "10":
                     sort = new ShellSort();
                     break;
+                case "11":
+                    sort = new RadixSort();
+                    break;
                 default:
                     return;
             }
@@ -102,7 +107,7 @@ namespace TestTasks.SortTests
             Random random = new();
             for (int i = 0; i < _testArray.Length; i++)
             {
-                _testArray[i] = random.Next(100);
+                _testArray[i] = random.Next(NUMBER_LIMIT);
             }
 
             return _testArray;

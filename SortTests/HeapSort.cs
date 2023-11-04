@@ -26,21 +26,26 @@
             int count = array.Length;
             int midpoint = count / 2;
 
-            //recursively builds a binary heap regrouping the array
+            /* recursively builds a binary heap rearranging the array. It treats each element
+             * as if it were a root of it's own small subheap. Children of every node are located at:
+             * left: (parentIndex * 2 + 1), right: (parentIndex * 2 + 2).
+             * Therefore, a node has no children if (parentIndex * 2 + 1 > arrayLength-1).
+             * Hence all the right part of the array consists of leaves (which have no children).
+             * So algorithm needs to heapify only the left part or array.*/
             for (int i = midpoint - 1; i >= 0; i--)
             {
                 Heapify(array, i, count);
             }
 
-            //retrieves elements from the heap iteratively
+            //retrieves the next biggest element iteratively and
+            //leaves it at the sorted part in the end of the array:
             for (int j = count - 1; j >= 0; j--)
             {
-                //swaps the root with the last element
-                //leaving it as the next biggest element
+                //swaps the root with the last element,
+                //the ex-root goes at the end of the array where sorted large elements stored:
                 (array[0], array[j]) = (array[j], array[0]);
 
-                //excludes the outcasted root from the next iteration since
-                //j becomes new subarray length, what means the last element is j-1:
+                //repeats heapifying with new root element which came to replace the ex-root:
                 Heapify(array, 0, j);
             }
             return array;
@@ -56,21 +61,23 @@
             //sees the root as the largest element (as it should be in binary heap):
             int largest = root;
 
-            //that's the most convenient left and right elements to start heapifying from:
-            int left = 2 * root + 1; 
-            int right = 2 * root + 2;
+            //children of the root are located at:
+            int leftChild = 2 * root + 1;
+            int rightChild = 2 * root + 2;
 
-            //compares left child element. If it's bigger than the root, then
-            //it's new biggest element:
-            if (left < count && array[left] > array[largest])
-                largest = left;
+            //checks if leftChild child element exists and compares it with the largest element
+            //(initially it's its root parent).
+            //If it's bigger than the root, then it's new biggest element:
+            if (leftChild < count && array[leftChild] > array[largest])
+                largest = leftChild;
 
-            //does the same for the right child element:
-            if (right < count && array[right] > array[largest])
-                largest = right;
+            //does the same for the rightChild child element (but this time the largest element
+            //might be its sibling if sibling was bigger than the root parent)
+            if (rightChild < count && array[rightChild] > array[largest])
+                largest = rightChild;
 
-            /* if the largest element isn't the root, it means the heapifying
-             * isn't incomplete yet. So it recursively calls itself to finish
+            /* if the largest element isn't the root, it means the heapifying result 
+             * isn't perfect so it's incomplete yet. Thus, it recursively calls itself to finish
              * the arrangement appropriate for a binary heap:*/
             if (largest != root)
             {
