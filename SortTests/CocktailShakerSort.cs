@@ -16,9 +16,8 @@
     /// </remarks>
     internal class CocktailShakerSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
             //defines limits for both ends
             int leftBound = 0;
             int rightBound = array.Length - 1;

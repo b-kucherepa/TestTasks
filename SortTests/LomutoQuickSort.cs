@@ -18,11 +18,11 @@
     /// </remarks>
     internal class LomutoQuickSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
             return QuicksortProcedure(array, 0, array.Length - 1);
         }
+
 
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
@@ -37,6 +37,7 @@
 
             return array;
         }
+
 
         private int PartitionSort(int[] array, int leftBound, int rightBound)
         {

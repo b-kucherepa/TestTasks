@@ -19,9 +19,8 @@
     /// </remarks>
     internal class BubbleOptimizedSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
             //defines the limit for the right end
             int rightBound = array.Length - 1;
 

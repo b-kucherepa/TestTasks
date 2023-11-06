@@ -6,7 +6,7 @@ namespace TestTasks.SortTests
     {
         private int _testNumber = 1;
         private int[] _testArray = NewTestArray(20);
-        private Stopwatch _timer = new Stopwatch();
+        private Stopwatch _timer = new();
         private const int NUMBER_LIMIT = 10000;
 
         public override void Select()
@@ -87,10 +87,13 @@ namespace TestTasks.SortTests
             Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
             Program.PrintArrayData(_testArray, "\n-Unsorted:-");
 
+            int [] arrayToSort = new int[_testArray.Length];
+            Array.Copy(_testArray, arrayToSort, _testArray.Length);
+
             _timer.Restart();
-            int[] sortedArray = sort.ReturnSorted(_testArray);
+            arrayToSort = sort.ReturnSorted(arrayToSort);
             _timer.Stop();
-            Program.PrintArrayData(sortedArray, "\n-Sorted:-");
+            Program.PrintArrayData(arrayToSort, "\n-Sorted:-");
             Console.WriteLine("\nAn approximate execution time (more precise with bigger arrays): " 
                 + _timer.Elapsed + "ms.\n");
 

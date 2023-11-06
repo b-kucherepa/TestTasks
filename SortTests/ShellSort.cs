@@ -27,10 +27,8 @@
     /// </remarks>
     internal class ShellSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
-
             int step = 1;
 
             //searches for the optimal sort step recursively:

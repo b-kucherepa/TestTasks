@@ -20,9 +20,8 @@
     /// </remarks>
     internal class HeapSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
             int count = array.Length;
             int midpoint = count / 2;
 

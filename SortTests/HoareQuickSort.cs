@@ -23,11 +23,12 @@
     /// </remarks>
     internal class HoareQuickSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
+        public override int[] ReturnSorted(int[] array)
         {
-            int[] array = inputArray;
             return QuicksortProcedure(array, 0, array.Length - 1);
         }
+
+
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
             //if the bounds are within the limits, the algorithm defines a new partition and
@@ -41,6 +42,8 @@
 
             return array;
         }
+
+
         /// <summary>
         /// Sorts elements along the pivot and defines the new one upon finishing
         /// </summary>

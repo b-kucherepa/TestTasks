@@ -28,10 +28,8 @@ namespace TestTasks.SortTests
     /// </remarks>
     internal class RadixSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] inputArray)
-        {
-            int[] array = inputArray;
-
+        public override int[] ReturnSorted(int[] array)
+        { 
             //iterates through every binary position of every number in array
             for (int shift = 0; shift < 32; shift++)
             {
