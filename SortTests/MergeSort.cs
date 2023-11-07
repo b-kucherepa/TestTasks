@@ -42,9 +42,10 @@
                 //merging them until the whole-sized, now sorted, array is reassembled:
                 SortAndMerge(array, leftBound, midPoint, midPoint + 1, rightBound);
             }
-            //if two bounds are met, it means array consists of only 1 element
+            //if two bounds are met, it means subarray consists of only 1 element
             //(which is == leftBound == rightBound). One-element array is sorted
-            //by default so we can just leave it as it is:
+            //by default so we can just leave it as it is. If the bounds are overlapped,
+            //then it means subarray has 0 elements so it don't need to be sorted at all.
             else
             {
                 return;

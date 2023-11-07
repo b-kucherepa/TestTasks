@@ -4,8 +4,8 @@
     /// Quicksort was developed by British computer scientist Tony Hoare in 1959 and 
     /// published in 1961.
     /// The current realization uses Hoare's partition scheme.
-    /// It chooses a random pivot and compares all other elements, placing lesser ones 
-    /// on the left side and bigger ones on the right side of the pivot. 
+    /// It chooses a pivot in the middle of subarray and compares all other elements, 
+    /// placing lesser ones on the left side and bigger ones on the right side of the pivot. 
     /// Once it's done, the algorithm selects two new pivots on both sides and repeats the sort. 
     /// It iterates recursively until there is only one element remaining in each separation. 
     /// After that, the algorithm inserts every pivot between 
@@ -31,13 +31,16 @@
 
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
-            //if the bounds are within the limits, the algorithm defines a new partition and
-            //makes recursive calls at the two halves of the list itself
+            //if the bounds are within the limits and not met together (so partition consists
+            //more than of one element), the algorithm defines a new partition and
+            //makes recursive calls of itself at the two halves of the array
             if (leftBound >= 0 && rightBound >= 0 && leftBound < rightBound)
             {
-                int partition = PartitionSort(array, leftBound, rightBound);
-                array = QuicksortProcedure(array, leftBound, partition);
-                array = QuicksortProcedure(array, partition + 1, rightBound);
+                //at first, it sorts the array compared to pivot element, and returns
+                //new partition index.
+                int partitionIndex = PartitionSort(array, leftBound, rightBound);
+                array = QuicksortProcedure(array, leftBound, partitionIndex);
+                array = QuicksortProcedure(array, partitionIndex + 1, rightBound);
             }
 
             return array;
@@ -49,8 +52,8 @@
         /// </summary>
         private int PartitionSort(int[] array, int leftBound, int rightBound)
         {
-            //in this specific implementation, the function takes the 3/4 point of
-            //the provided array (or subarray) as new random pivot element:
+            //in this specific implementation, the function takes the middle point of
+            //the provided subarray as new sort pivot element:
             int pivotIndex = (rightBound - leftBound) / 2 + leftBound;
             int pivotElement = array[pivotIndex];
 
@@ -65,10 +68,9 @@
             {
                 /* this block skips all elements that are smaller than the pivot element, since 
                  * they could be considered already sorted relative to the pivot element. 
-                 * It still advances one step at a time during each iteration to prevent stuck.
+                 * It still advances one step during each iteration to prevent stuck.
                  * It doesn't miss any pairs of elements that need to be swapped, as those pairs 
                  * were already swapped forcefully at the end of the previous iteration: */
-
                 do
                 {
                     leftIndex++;
@@ -84,16 +86,18 @@
                 while (array[rightIndex] > pivotElement);
 
                 /* if the two scanning positions are met, this stage of sorting is finished, and
-                 * a new partition element is found to be returned. The function then returns
-                 * the new pivot element, which will be used to define the new partition: */
+                 * a new partition element is found to be returned. The block then returns
+                 * an element which will be used to perform the next partition: */
                 if (leftIndex >= rightIndex)
                 {
                     return rightIndex;
                 }
 
-                /* swaps the left and right elements currently being "scanned" forcibly because 
+                /* swaps the left and right elements being "scanned" currently by force because
                  * at least one of the elements is on the wrong side of the pivot (while 
-                 * the second element is also on the wrong side or equal to the pivot): */
+                 * the second element is also on the wrong side or equal to the pivot).
+                 * That's true due to the fact the algorithm skipped all elements
+                 * which were at proper sides.*/
                 (array[leftIndex], array[rightIndex]) = (array[rightIndex], array[leftIndex]);
             }
         }

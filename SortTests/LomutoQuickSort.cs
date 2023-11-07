@@ -2,7 +2,8 @@
 {
     /// <summary>
     /// Quicksort with Lomuto's partition scheme. A more popular variation.
-    /// It goes at one direction only (in this specific implementation it's right-to-left).
+    /// It goes at one direction only (here it's from left-to-right taking the rightmost element 
+    /// as the pivot value to compare subarrays with).
     /// Lomuto's scheme is less efficient than the original Hoare's one because 
     /// it does three times more swaps on average but it's easier to understand and implement.
     /// </summary>
@@ -26,14 +27,13 @@
 
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
-            if (leftBound >= rightBound || leftBound < 0)
+            //unlike Hoare's sort, it has only left bound changeable:
+            if (leftBound >= 0 && leftBound < rightBound)
             {
-                return array;
+                int partitionIndex = PartitionSort(array, leftBound, rightBound);
+                array = QuicksortProcedure(array, leftBound, partitionIndex - 1);
+                array = QuicksortProcedure(array, partitionIndex, rightBound);
             }
-
-            int partition = PartitionSort(array, leftBound, rightBound);
-            array = QuicksortProcedure(array, leftBound, partition-1);
-            array = QuicksortProcedure(array, partition, rightBound);
 
             return array;
         }
@@ -41,24 +41,39 @@
 
         private int PartitionSort(int[] array, int leftBound, int rightBound)
         {
-            //sets partition pivot simply to right bound:
+            //sets sort pivot value equal to the rightmost element of the subarray:
             int pivotElement = array[rightBound];
 
-            //temporary pivot index:
-            int newPivotIndex = leftBound - 1;
+            /* sets the "virtual" separation index to the leftmost element.
+             * It doesn't bear any value to compare, it just points the separation line
+             * between those elements which are lesser and those elements which are greater than
+             * the "real" pivot value used for comparison: */
+            int separatorIndex = leftBound;
 
+            /* the FOR loop iterates through the subarray. If the current element is greater than
+             * the pivot element, it does nothing because it's already at the proper place 
+             * (by the right side of the separator). 
+             * But if the current element is lesser than the pivot element, it swaps 
+             * the element standing at the separator index with the current element (because 
+             * the current element should be by the left side of the separator), and shifts 
+             * the separator to the right because there was one more element inserted before it: */
             for (int i = leftBound; i < rightBound; i++)
             {
-                if (array[i] <= pivotElement)
+                if (array[i] < pivotElement)
                 {
-                    newPivotIndex++;
-                    (array[newPivotIndex], array[i]) = (array[i], array[newPivotIndex]);
+                    (array[separatorIndex], array[i]) = (array[i], array[separatorIndex]);
+                    separatorIndex++;
                 }
             }
 
-            newPivotIndex++;
-            (array[newPivotIndex], array[rightBound]) = (array[rightBound], array[newPivotIndex]);
-            return newPivotIndex;
+            /* once the whole subarray is sorted, it swaps the pivot element which value was used to
+             * sort the subarray with the separator index element. Since it's greater than elements 
+             * by the left side and lesser than elements by the right side of the separator, 
+             * it should be between these two groups to maintain order. */
+            (array[separatorIndex], array[rightBound]) = (array[rightBound], array[separatorIndex]);
+
+            //the separator index becomes next partition index:
+            return separatorIndex;
         }
     }
 }
