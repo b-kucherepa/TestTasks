@@ -23,7 +23,7 @@
     /// </remarks>
     internal class HoareQuickSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             return QuicksortProcedure(array, 0, array.Length - 1);
         }
@@ -31,16 +31,18 @@
 
         private int[] QuicksortProcedure(int[] array, int leftBound, int rightBound)
         {
-            //if the bounds are within the limits and not met together (so partition consists
-            //more than of one element), the algorithm defines a new partition and
-            //makes recursive calls of itself at the two halves of the array
+            /* if the bounds are within the limits and not met together (so partition consists
+             * more than of one element), the algorithm defines a new partition and
+             * makes recursive calls of itself at the two halves of the array */
             if (leftBound >= 0 && rightBound >= 0 && leftBound < rightBound)
             {
-                //at first, it sorts the array compared to pivot element, and returns
-                //new partition index.
+                //at first, it sorts the array compared to the pivot element, and
+                //returns new partition index:
                 int partitionIndex = PartitionSort(array, leftBound, rightBound);
-                array = QuicksortProcedure(array, leftBound, partitionIndex);
-                array = QuicksortProcedure(array, partitionIndex + 1, rightBound);
+                //NB: arrays are passed by reference, so we don't need to save
+                //returned sorted array any special way since the initial array was sorted itself:
+                QuicksortProcedure(array, leftBound, partitionIndex);
+                QuicksortProcedure(array, partitionIndex + 1, rightBound);
             }
 
             return array;
@@ -71,8 +73,8 @@
                  * It still advances one step during each iteration to prevent stuck.
                  * It doesn't miss any pairs of elements that need to be swapped, as those pairs 
                  * were already swapped forcefully at the end of the previous iteration: */
-                do
-                {
+            do
+            {
                     leftIndex++;
                 }
                 while (array[leftIndex] < pivotElement);

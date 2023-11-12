@@ -19,7 +19,7 @@
     /// </remarks>
     internal class LomutoQuickSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             return QuicksortProcedure(array, 0, array.Length - 1);
         }
@@ -31,8 +31,8 @@
             if (leftBound >= 0 && leftBound < rightBound)
             {
                 int partitionIndex = PartitionSort(array, leftBound, rightBound);
-                array = QuicksortProcedure(array, leftBound, partitionIndex - 1);
-                array = QuicksortProcedure(array, partitionIndex, rightBound);
+                QuicksortProcedure(array, leftBound, partitionIndex - 1);
+                QuicksortProcedure(array, partitionIndex+1, rightBound);
             }
 
             return array;

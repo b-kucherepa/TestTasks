@@ -17,7 +17,7 @@
     /// </remarks>
     internal class BubbleSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             bool isSwapped;
 

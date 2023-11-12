@@ -2,7 +2,7 @@
 {
     internal abstract class SortAlgorithm
     {
-        public abstract int[] ReturnSorted(int[] array);
+        public abstract int[] SortArray(int[] array);
 
 
         internal static int[] GetSubArray(int[] array, int firstIndex, int length)

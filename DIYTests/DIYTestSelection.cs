@@ -1,6 +1,6 @@
 ﻿namespace TestTasks.DIYTests
 {
-    public class DIYTestSelection : TestSelection
+    public class DIYTestSelection : TestMenu
     {
         public override void Select()
         {

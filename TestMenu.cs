@@ -1,6 +1,6 @@
 ﻿namespace TestTasks
 {
-    public abstract class TestSelection
+    public abstract class TestMenu
     {
         public abstract void Select();
     }

@@ -18,7 +18,7 @@
     /// </remarks>
     internal class MergeSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             Split(array, 0, array.Length - 1);
             return array;
@@ -97,10 +97,9 @@
                     leftIndex++;
                     continue;
                 }
-
-                //this block performs similar operations for the right subarray half:
-                if (array[rightIndex] <= array[leftIndex])
+                else
                 {
+                    //this block performs similar operations for the right subarray half:
                     mergedArray[mergedIndex] = array[rightIndex];
                     rightIndex++;
                     continue;

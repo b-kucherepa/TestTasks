@@ -17,7 +17,7 @@
     /// </remarks>
     internal class InsertionSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             /* The outer FOR loop iterates through the unsorted array part
              * starting from the second element*/

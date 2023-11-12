@@ -27,7 +27,7 @@
     /// </remarks>
     internal class ShellSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             int step = 1;
 

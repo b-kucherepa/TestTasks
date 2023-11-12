@@ -17,7 +17,7 @@
 
     internal class SelectionSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             //The outer FOR loop iterates through every element of the array except the last one
             for (int leftIndex = 0; leftIndex < array.Length - 1; leftIndex++)

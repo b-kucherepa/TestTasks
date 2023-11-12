@@ -16,7 +16,7 @@
     /// </remarks>
     internal class CocktailShakerSort : SortAlgorithm
     {
-        public override int[] ReturnSorted(int[] array)
+        public override int[] SortArray(int[] array)
         {
             //defines limits for both ends
             int leftBound = 0;

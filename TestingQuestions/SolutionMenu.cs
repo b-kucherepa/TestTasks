@@ -1,6 +1,6 @@
 ﻿namespace TestTasks.TestingQuestions
 {
-    internal class TestingSolutionSelection : TestSelection
+    internal class SolutionMenu : TestMenu
     {
         public override void Select()
         {

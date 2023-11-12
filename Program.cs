@@ -18,17 +18,17 @@ namespace TestTasks
             Console.WriteLine("< Enter any other key to exit.");
             Console.WriteLine();
 
-            TestSelection selection;
+            TestMenu selection;
             switch (Console.ReadLine())
             {
                 case "1":
-                    selection = new SortSelection();
+                    selection = new SortMenu();
                     break;
                 case "2":
                     selection = new DIYTestSelection();
                     break;
                 case "3":
-                    selection = new TestingSolutionSelection();
+                    selection = new SolutionMenu();
                     break;
                 default:
                     Environment.Exit(0);
