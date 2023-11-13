@@ -8,7 +8,6 @@ namespace TestTasks.SortTests
         private static int _externalTestNumber = 1;
         private static int[] _testArray = NewTestArray(20);
         private static string _inputFilePath;
-        private static Stopwatch _timer = new();
         private const int INNER_SORT_COUNT_LIMIT = 100000;
         private const int EXTERNAL_SORT_COUNT_LIMIT = 10000000;
         private const int EXTERNAL_SORT_BUFFER_LIMIT = 32768;
@@ -16,9 +15,7 @@ namespace TestTasks.SortTests
 
         public override void Select()
         {
-            Console.WriteLine();
-
-            Console.WriteLine("Select an inner sort algorithm to test:");
+            Console.WriteLine("\nSelect an inner sort algorithm to test:");
             Console.WriteLine("> Enter 1 to use merge sort,");
             Console.WriteLine("> Enter 2 to use insertion sort,");
             Console.WriteLine("> Enter 3 to use selection sort,");
@@ -200,22 +197,6 @@ namespace TestTasks.SortTests
             }
 
             return _testArray;
-        }
-
-
-        public static int ReadNumberInLimit(int min, int max)
-        {
-            Console.WriteLine("");
-            string? input = Console.ReadLine();
-            bool isSuccessful = int.TryParse(input, out int number);
-            if ((isSuccessful) && (number >= min) && (number <= max))
-            {
-                return number;
-            }
-            else
-            {
-                return -1;
-            }
         }
     }
 }

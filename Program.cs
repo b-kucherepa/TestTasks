@@ -3,6 +3,7 @@ using TestTasks.DIYTests;
 using TestTasks.TestingQuestions;
 
 using TestTasks.DIYClasses;
+using TestTasks.PolynomialCalculations;
 
 namespace TestTasks
 {
@@ -15,6 +16,7 @@ namespace TestTasks
             Console.WriteLine("> Enter 1 to test sort algorithms,");
             Console.WriteLine("> Enter 2 to test homemade classes");
             Console.WriteLine("> Enter 3 to test testing question solutions,");
+            Console.WriteLine("> Enter 4 to test polynomial equation calculator,");
             Console.WriteLine("< Enter any other key to exit.");
             Console.WriteLine();
 
@@ -29,6 +31,9 @@ namespace TestTasks
                     break;
                 case "3":
                     selection = new SolutionMenu();
+                    break;
+                case "4":
+                    selection = new PolynomialMenu();
                     break;
                 default:
                     Environment.Exit(0);
