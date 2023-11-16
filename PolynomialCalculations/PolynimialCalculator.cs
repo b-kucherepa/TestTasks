@@ -2,6 +2,6 @@
 {
     internal abstract class PolynimialCalculator
     {
-        internal abstract long Solve(int x, int[] coefficients);
+        public abstract long Solve(int x, int[] coefficients);
     }
 }

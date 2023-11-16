@@ -26,7 +26,7 @@ namespace TestTasks.SortTests
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(W + N).
     /// </remarks>
-    internal class RadixSort : SortAlgorithm
+    internal class RadixSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         { 

@@ -48,7 +48,7 @@
         private int _signalValue = -1;
 
 
-        public string SortFile(string filePath, int bufferLimit, SortAlgorithm innerSort)
+        public string SortFile(string filePath, int bufferLimit, SortingAlgorithm innerSort)
         {
             //initializes new buffer array:
             _buffer = new int[bufferLimit];
@@ -67,7 +67,7 @@
         }
 
 
-        private void FirstPass(string initialFilePath, SortAlgorithm innerSort, out int maxFileLength)
+        private void FirstPass(string initialFilePath, SortingAlgorithm innerSort, out int maxFileLength)
         {
             string outputCachePath = _cacheAPath;
             int position = 0;

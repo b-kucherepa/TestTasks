@@ -15,7 +15,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(N) total, O(1) auxiliary.
     /// </remarks>
-    internal class InsertionSort : SortAlgorithm
+    internal class InsertionSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         {

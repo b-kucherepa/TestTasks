@@ -25,7 +25,7 @@
     /// O(N) total, 
     /// O(1) auxiliary.
     /// </remarks>
-    internal class ShellSort : SortAlgorithm
+    internal class ShellSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         {

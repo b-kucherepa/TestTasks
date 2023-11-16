@@ -17,7 +17,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// Ω(N).
     /// </remarks>
-    internal class LomutoQuickSort : SortAlgorithm
+    internal class LomutoQuickSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         {

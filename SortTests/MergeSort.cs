@@ -16,7 +16,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(N) total, O(n) auxiliary typically but O(1) with linked lists.
     /// </remarks>
-    internal class MergeSort : SortAlgorithm
+    internal class MergeSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         {

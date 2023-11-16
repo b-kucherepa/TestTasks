@@ -1,8 +1,8 @@
 ﻿namespace TestTasks.TestingQuestions.StringsAndArrays
 {
-    internal class CountLowerCase : TestTask
+    internal class CountLowerCase : ITestTask
     {
-        public override void Begin()
+        public void Begin()
         {
             Console.WriteLine("\nEnter a line to count lower case letters in it:\n");
 

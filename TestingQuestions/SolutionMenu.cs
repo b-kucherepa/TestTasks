@@ -15,7 +15,7 @@
             Console.WriteLine("< Enter any other key to return.");
             Console.WriteLine();
 
-            TestTask task;
+            ITestTask task;
 
             switch (Console.ReadLine())
             {

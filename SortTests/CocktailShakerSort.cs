@@ -14,7 +14,7 @@
     /// Worst-case space complexity (order of the memory usage) is 
     /// O(1).
     /// </remarks>
-    internal class CocktailShakerSort : SortAlgorithm
+    internal class CocktailShakerSort : SortingAlgorithm
     {
         public override int[] SortArray(int[] array)
         {

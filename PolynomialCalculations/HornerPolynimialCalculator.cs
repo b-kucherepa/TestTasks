@@ -14,7 +14,7 @@
     /// </remarks>
     internal class HornerPolynimialCalculator : PolynimialCalculator
     {
-        internal override long Solve(int x, int[] coefficient)
+        public override long Solve(int x, int[] coefficient)
         {
             long result = 0;
             for (int i = coefficient.Length-1; i >= 0; i--)

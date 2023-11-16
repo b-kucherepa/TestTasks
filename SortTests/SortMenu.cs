@@ -1,17 +1,31 @@
-﻿using System.Diagnostics;
-
-namespace TestTasks.SortTests
+﻿namespace TestTasks.SortTests
 {
     public class SortMenu : TestMenu
     {
         private static int _innerTestNumber = 1;
         private static int _externalTestNumber = 1;
-        private static int[] _testArray = NewTestArray(20);
-        private static string _inputFilePath;
+        private static int[] _testArray;
+
         private const int INNER_SORT_COUNT_LIMIT = 100000;
         private const int EXTERNAL_SORT_COUNT_LIMIT = 10000000;
         private const int EXTERNAL_SORT_BUFFER_LIMIT = 32768;
         private const int ELEMENT_LIMIT = 100000;
+
+        //private static readonly Func<Sort>[] OPTIONS = new Func<Sort>[]
+        //{
+        //    null,
+        //    () => new BubbleSort(),
+        //    () => new BubbleOptimizedSort(),
+        //    () => new SelectionSort(),
+        //    () => new InsertionSort(),
+        //    () => new CocktailShakerSort(),
+        //    () => new ShellSort(),
+        //    () => new HoareQuickSort(),
+        //    () => new LomutoQuickSort(),
+        //    () => new MergeSort(),
+        //    () => new RadixSort(),
+        //    () => new HeapSort()
+        //};
 
         public override void Select()
         {
@@ -29,7 +43,7 @@ namespace TestTasks.SortTests
             Console.WriteLine("> Enter 11 to use radix sort,");
             Console.WriteLine("< Enter any other key to return.");
 
-            SortAlgorithm sort;
+            SortingAlgorithm sort;
             switch (Console.ReadLine())
             {
                 case "1":
@@ -93,25 +107,27 @@ namespace TestTasks.SortTests
         }
 
 
-        private static void PerformInternalSort(SortAlgorithm sort)
+        private static void PerformInternalSort(SortingAlgorithm sort)
         {
             Console.WriteLine($"\nEnter the random test array length (1-"
-                + INNER_SORT_COUNT_LIMIT + ") to generate one,");
+                + INNER_SORT_COUNT_LIMIT + ") to generate one, ");
 
             if (_innerTestNumber == 1)
             {
-                Console.WriteLine("or enter any other key to use an array " +
+                Console.Write("or enter any other key to use an array " +
                     "of the default length 20:");
+                _testArray = GenerateRandomArray(20, ELEMENT_LIMIT);
             }
             else
             {
-                Console.WriteLine("or enter any other key to keep the same array:");
+                Console.Write("or enter any other key to keep the same array:");
             }
 
-            int selectedOption = ReadNumberInLimit(1, INNER_SORT_COUNT_LIMIT);
-            if (selectedOption != -1)
+            int readNumber; 
+            bool readIsSuccessful = ReadNumberInLimit(1, INNER_SORT_COUNT_LIMIT, out readNumber);
+            if (readIsSuccessful)
             {
-                _testArray = NewTestArray(selectedOption);
+                _testArray = GenerateRandomArray(readNumber, ELEMENT_LIMIT);
             }
 
             Console.WriteLine("\n>>>TEST NUMBER " + _innerTestNumber + "<<<\n");
@@ -131,41 +147,45 @@ namespace TestTasks.SortTests
         }
 
 
-        private static void PerformExternalSort(SortAlgorithm sort)
+        private static void PerformExternalSort(SortingAlgorithm sort)
         {
             Console.WriteLine($"\nEnter the random test array length (1-"
-                + EXTERNAL_SORT_COUNT_LIMIT + ") to generate a file with one,");
+                + EXTERNAL_SORT_COUNT_LIMIT + ") to generate a file with one, ");
 
+            string inputFilePath = "";
             if (_externalTestNumber == 1)
             {
-                Console.WriteLine("or enter any other key to create a file with array " +
+                Console.Write("or enter any other key to create a file with array " +
                     "of the default length 10000:");
+
             }
             else
             {
-                Console.WriteLine("or enter any other key to keep the same array file:");
+                Console.Write("or enter any other key to keep the same array file:");
             }
 
-            int selectedOption = ReadNumberInLimit(1, EXTERNAL_SORT_COUNT_LIMIT);
-            if (selectedOption != -1)
+
+            int readNumber; 
+            bool readIsSuccessful = ReadNumberInLimit(1, EXTERNAL_SORT_COUNT_LIMIT, out readNumber);
+            if (readIsSuccessful)
             {
-                _inputFilePath = FileManager.CreateEmptyFile("FileToSort.txt", "ExternalSort\\");
-                FileManager.GenerateRandomArrayInFile(_inputFilePath, selectedOption, ELEMENT_LIMIT);
+                inputFilePath = FileManager.CreateEmptyFile("FileToSort.txt", "ExternalSort\\");
+                FileManager.GenerateRandomArrayInFile(inputFilePath, readNumber, ELEMENT_LIMIT);
             }
             else if (_externalTestNumber == 1)
             {
-                _inputFilePath = FileManager.CreateEmptyFile("FileToSort.txt", "ExternalSort\\");
-                FileManager.GenerateRandomArrayInFile(_inputFilePath, 10000, ELEMENT_LIMIT);
+                inputFilePath = FileManager.CreateEmptyFile("FileToSort.txt", "ExternalSort\\");
+                FileManager.GenerateRandomArrayInFile(inputFilePath, 10000, ELEMENT_LIMIT);
             }
 
             int bufferLimit;
-            Console.WriteLine($"\nEnter the buffer size limit (1-" + EXTERNAL_SORT_BUFFER_LIMIT + 
+            Console.WriteLine($"\nEnter the buffer size limit (1-" + EXTERNAL_SORT_BUFFER_LIMIT +
                 "), or enter any other key to use the default limit of 1024:");
 
-            selectedOption = ReadNumberInLimit(1, EXTERNAL_SORT_COUNT_LIMIT);
-            if (selectedOption != -1)
+            readIsSuccessful = ReadNumberInLimit(1, EXTERNAL_SORT_COUNT_LIMIT, out readNumber);
+            if (readIsSuccessful)
             {
-                bufferLimit = selectedOption;
+                bufferLimit = readNumber;
             }
             else
             {
@@ -175,7 +195,7 @@ namespace TestTasks.SortTests
             ExternalSort externalSort = new();
             _timer.Restart();
             string outputPath =
-                externalSort.SortFile(_inputFilePath, bufferLimit, sort);
+                externalSort.SortFile(inputFilePath, bufferLimit, sort);
             _timer.Stop();
 
             Console.WriteLine("\nSorted. Check the file to verify:\n");
@@ -184,19 +204,6 @@ namespace TestTasks.SortTests
                 + _timer.Elapsed + "ms.\n");
 
             _innerTestNumber++;
-        }
-
-        private static int[] NewTestArray(int length)
-        {
-            var _testArray = new int[length];
-
-            Random random = new();
-            for (int i = 0; i < _testArray.Length; i++)
-            {
-                _testArray[i] = random.Next(ELEMENT_LIMIT);
-            }
-
-            return _testArray;
         }
     }
 }

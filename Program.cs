@@ -1,9 +1,12 @@
 using TestTasks.SortTests;
+using TestTasks.SearchTests;
 using TestTasks.DIYTests;
 using TestTasks.TestingQuestions;
+using TestTasks.PolynomialCalculations;
 
 using TestTasks.DIYClasses;
-using TestTasks.PolynomialCalculations;
+using System.Collections.Generic;
+
 
 namespace TestTasks
 {
@@ -14,9 +17,10 @@ namespace TestTasks
             Console.WriteLine();
             Console.WriteLine("Select a category of tests:");
             Console.WriteLine("> Enter 1 to test sort algorithms,");
-            Console.WriteLine("> Enter 2 to test homemade classes");
-            Console.WriteLine("> Enter 3 to test testing question solutions,");
-            Console.WriteLine("> Enter 4 to test polynomial equation calculator,");
+            Console.WriteLine("> Enter 2 to test search algorithms,");
+            Console.WriteLine("> Enter 3 to test homemade classes");
+            Console.WriteLine("> Enter 4 to test testing question solutions,");
+            Console.WriteLine("> Enter 5 to test polynomial equation calculator,");
             Console.WriteLine("< Enter any other key to exit.");
             Console.WriteLine();
 
@@ -27,12 +31,15 @@ namespace TestTasks
                     selection = new SortMenu();
                     break;
                 case "2":
-                    selection = new DIYTestSelection();
+                    selection = new SearchMenu();
                     break;
                 case "3":
-                    selection = new SolutionMenu();
+                    selection = new DIYTestSelection();
                     break;
                 case "4":
+                    selection = new SolutionMenu();
+                    break;
+                case "5":
                     selection = new PolynomialMenu();
                     break;
                 default:
@@ -67,6 +74,52 @@ namespace TestTasks
             for (int i = 0; i < list.Count; i++)
             {
                 Console.Write($"{i}. {list[i].Data ?? "Missing node!"} => ");
+            }
+
+            Console.WriteLine();
+        }
+
+        public static void PrintBinaryTree(BinaryTree<DummyData> tree,
+            string label)
+        {
+            Console.WriteLine();
+            Console.WriteLine(label);
+            Console.WriteLine("Count: " + tree.Count);
+
+            //acts the same way as the breadth-first search algorithm
+            HashSet<BinaryNode<DummyData>> visitedNodes = new();
+            Queue<BinaryNode<DummyData>> prospectedNodes = new();
+
+            prospectedNodes.Enqueue(tree.Root);
+
+            int currentNodeInRow = 0;
+            int totalNodesInRow = 1;
+
+            while (prospectedNodes.Any())
+            {
+                BinaryNode<DummyData> node = prospectedNodes.Dequeue();
+
+                if (currentNodeInRow == totalNodesInRow)
+                {
+                    Console.WriteLine();
+                    currentNodeInRow = 0;
+                    totalNodesInRow *= 2;
+                }
+
+                Console.Write($"(#{node.Data.Position.ToString() ?? "X"}) {node.Data.Id.ToString() ?? "X"}, ");
+                currentNodeInRow++;
+
+                visitedNodes.Add(node);
+
+                if ((node.LeftChild is not null) && (!visitedNodes.Contains(node.LeftChild)))
+                {
+                    prospectedNodes.Enqueue(node.LeftChild);
+                }
+
+                if ((node.RightChild is not null) && (!visitedNodes.Contains(node.RightChild)))
+                {
+                    prospectedNodes.Enqueue(node.RightChild);
+                }
             }
 
             Console.WriteLine();

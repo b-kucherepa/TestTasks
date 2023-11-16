@@ -11,7 +11,7 @@
     /// </remarks>
     internal class SimplePolynomialCalculator : PolynimialCalculator
     {
-        internal override long Solve(int x, int[] coefficient)
+        public override long Solve(int x, int[] coefficient)
         {
             long result = coefficient[0];
             int powerOfX = 1;

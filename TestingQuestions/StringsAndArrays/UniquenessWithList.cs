@@ -1,8 +1,8 @@
 namespace TestTasks.TestingQuestions.StringsAndArrays
 {
-    public class UniquenessWithHash : TestTask
+    public class UniquenessWithHash : ITestTask
     {
-        public override void Begin()
+        public void Begin()
         {
             Console.WriteLine("\nEnter a line to check:\n");
 

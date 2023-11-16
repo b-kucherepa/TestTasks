@@ -1,8 +1,8 @@
 namespace TestTasks.TestingQuestions.StringsAndArrays
 {
-    public class UniquenessNoDataStructures : TestTask
+    public class UniquenessNoDataStructures : ITestTask
     {
-        public override void Begin()
+        public void Begin()
         {
             Console.WriteLine("\nEnter a line to check:\n");
 

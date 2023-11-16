@@ -2,9 +2,9 @@
 
 namespace TestTasks.DIYTests
 {
-    internal class SinglyLinkedListTest : TestTask
+    internal class SinglyLinkedListTest : ITestTask
     {
-        public override void Begin()
+        public void Begin()
         {
             SinglyLinkedList<string> list = new("I'm the first!");
             Program.PrintLinkedList(list, "On creation");
@@ -23,7 +23,7 @@ namespace TestTasks.DIYTests
 
             Console.WriteLine();
             Console.WriteLine("Found the inserted node. It says: " +
-                $"{list.Find("I've cut in, sorry guys!").Data} Shame on it!");
+                $"\"{list.Find("I've cut in, sorry guys!").Data}\" Shame on it! >:(");
 
             list.RemoveAt(3);
             Program.PrintLinkedList(list, "Removed that node from position 3 (there's no place for such insolence!)");
@@ -45,7 +45,7 @@ namespace TestTasks.DIYTests
             Console.WriteLine(list.Last.Data ?? "No nodes found");
             Console.WriteLine();
 
-            Console.WriteLine("Accessed random node:");
+            Console.WriteLine("Accessed some other node:");
             Console.WriteLine(list[4].Data ?? "No nodes found");
             Console.WriteLine();
 

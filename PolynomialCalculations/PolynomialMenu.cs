@@ -2,6 +2,7 @@
 {
     internal class PolynomialMenu : TestMenu
     {
+        private int _x = 0;
         private const int MIN_X = -100000;
         private const int MAX_X = 100000;
         private const int MIN_COEFFICIENT = -10000;
@@ -36,10 +37,17 @@
             Console.WriteLine(equation);
 
             Console.WriteLine($"\nEnter x to calculate the evaluation ({MIN_X}-{MAX_X}):");
-            int x = ReadNumberInLimit(MIN_X, MAX_X);
+            int x;
+            bool readIsSuccessful = ReadNumberInLimit(MIN_X, MAX_X, out x);
+            if (readIsSuccessful)
+            {
+                _x = x;
+            }
+
             _timer.Restart();
             long result = calculator.Solve(x, polynomialCoefficients);
             _timer.Stop();
+
             Console.WriteLine("\nThe result is:");
             Console.WriteLine(result);
             Console.WriteLine("\nAn approximate execution time (more precise with bigger equations): "

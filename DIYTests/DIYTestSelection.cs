@@ -10,7 +10,7 @@
             Console.WriteLine("< Enter any other key to return.");
             Console.WriteLine();
 
-            TestTask test;
+            ITestTask test;
             switch (Console.ReadLine())
             {
                 case "1":
