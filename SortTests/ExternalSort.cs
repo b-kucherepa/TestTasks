@@ -54,12 +54,9 @@
             _buffer = new int[bufferLimit];
 
             //performs a 3-phased algorithm and returns the sorted file path:
-            int maxFileLength;
-            FirstPass(filePath, innerSort, out maxFileLength);
+            FirstPass(filePath, innerSort, out int maxFileLength);
 
-            string lastCache1Path, lastCache2Path;
-            int halfOfFileLength;
-            MiddlePhase(maxFileLength, out lastCache1Path, out lastCache2Path, out halfOfFileLength);
+            MiddlePhase(maxFileLength, out string lastCache1Path, out string lastCache2Path, out int halfOfFileLength);
 
             FinalPass(lastCache1Path, lastCache2Path, halfOfFileLength);
 
@@ -107,8 +104,8 @@
         }
 
 
-        private void MiddlePhase(int fileLength,
-        out string lastCache1Path, out string lastCache2Path, out int lastRunLength)
+        private void MiddlePhase(int fileLength, 
+            out string lastCache1Path, out string lastCache2Path, out int lastRunLength)
         {
             /* After the first pass, cache files A and B have been filled with sorted runs of 
              * the buffer length. At the first pass of the second phase, these runs 

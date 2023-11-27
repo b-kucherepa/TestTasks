@@ -4,11 +4,22 @@ namespace TestTasks
 {
     public abstract class TestMenu
     {
-        internal static Stopwatch _timer = new();
+        internal delegate void MethodToSample();
+
 
         public abstract void Select();
 
-        //internal static void 
+        internal static string MeasureTime(MethodToSample method)
+        {
+            Stopwatch timer = new();
+
+            timer.Restart();
+            method();
+            timer.Stop();
+
+            return timer.Elapsed.ToString();
+        }
+
 
         internal static bool ReadNumberInLimit(int min, int max, out int retrievedNumber)
         {
@@ -27,19 +38,20 @@ namespace TestTasks
             }
         }
 
-        internal int[] ReadIntegersArray(string separator, int min, int max)
+
+        internal static int[] ReadIntegersArray(string separator, int min, int max)
         {
             Console.WriteLine("");
             string? input = Console.ReadLine();
             string[] elements = input.Split(separator);
             int[] integers = new int[elements.Length];
 
-            for(int i = 0; i < integers.Length; i++) 
+            for (int i = 0; i < integers.Length; i++)
             {
                 bool isSuccessful = int.TryParse(elements[i], out int number);
                 if ((isSuccessful) && (number >= min) && (number <= max))
                 {
-                    integers[integers.Length-i-1] = number;
+                    integers[integers.Length - i - 1] = number;
                 }
                 else
                 {
@@ -75,7 +87,7 @@ namespace TestTasks
             for (int i = 0; i < _testArray.Length; i++)
             {
                 _testArray[i] = currentValue;
-                currentValue += random.Next(1,5);
+                currentValue += random.Next(1, 5);
             }
 
             return _testArray;

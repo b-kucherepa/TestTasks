@@ -3,9 +3,9 @@
     public class BinaryTree<T>
     {
         private BinaryNode<T> _root;
-        public BinaryNode<T> Root { get => _root; }
-
         private int _count;
+
+        public BinaryNode<T> Root { get => _root; }
         public int Count { get => _count; }
 
         public BinaryTree(T[] dataArray, int rootIndex = 0)
@@ -20,7 +20,7 @@
         {
             /* children of every node are located at:
              * left: (parentIndex * 2 + 1), right: (parentIndex * 2 + 2).
-             * If these indexes are out of the array bounds, this child doesn't exist.
+             * If these indexes are out int of the array bounds, this child doesn't exist.
              * So we set the node data for each child (if it exists) and recursively call
              * the method to continue creating the tree: */
 

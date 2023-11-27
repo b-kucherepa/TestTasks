@@ -2,23 +2,21 @@
 {
     public class SinglyLinkedList<T>
     {
-        SinglyNode<T>? firstNode = null;
-        public SinglyNode<T>? First => firstNode;
-
-        public SinglyNode<T>? Last => this[_nodesCount - 1];
-
-        int _nodesCount = 0;
-        public int Count => _nodesCount;
-
+        private SinglyNode<T>? _firstNode = null;
+        private int _nodesCount = 0;
 
         public SinglyNode<T>? this[int index] => RetrieveNode(index);
+        public SinglyNode<T>? First => _firstNode;
+        public SinglyNode<T>? Last => this[_nodesCount - 1];
+        public int Count => _nodesCount;
+
 
         public SinglyLinkedList() { }
 
         public SinglyLinkedList(T dataReference)
         {
-            firstNode = new SinglyNode<T>(dataReference);
-            firstNode.Data = dataReference;
+            _firstNode = new SinglyNode<T>(dataReference);
+            _firstNode.Data = dataReference;
             _nodesCount++;
         }
 
@@ -26,15 +24,15 @@
         public void AddFirst(T dataReference)
         {
             SinglyNode<T>? newNode = new(dataReference);
-            newNode.Next = firstNode;
-            firstNode = newNode;
+            newNode.Next = _firstNode;
+            _firstNode = newNode;
             _nodesCount++;
         }
 
 
         public void RemoveFirst()
         {
-            firstNode = firstNode.Next;
+            _firstNode = _firstNode.Next;
             _nodesCount--;
         }
 
@@ -77,7 +75,7 @@
 
         private SinglyNode<T>? RetrieveNode(int index)
         {
-            SinglyNode<T>? indexedNode = firstNode;
+            SinglyNode<T>? indexedNode = _firstNode;
 
             for (int i = 0; i < index; i++)
             {
@@ -89,7 +87,7 @@
 
         public SinglyNode<T>? Find(T dataReference)
         {
-            SinglyNode<T>? visitedNode = firstNode;
+            SinglyNode<T>? visitedNode = _firstNode;
 
             while (visitedNode.Next is not null)
             {

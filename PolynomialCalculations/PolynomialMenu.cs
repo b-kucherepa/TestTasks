@@ -2,11 +2,14 @@
 {
     internal class PolynomialMenu : TestMenu
     {
-        private int _x = 0;
         private const int MIN_X = -100000;
         private const int MAX_X = 100000;
         private const int MIN_COEFFICIENT = -10000;
         private const int MAX_COEFFICIENT = 10000;
+
+        private int[] _polynomialCoefficients = new int[0];
+        private int _polynomialVariable = 0;
+
 
         public override void Select()
         {
@@ -28,33 +31,50 @@
                     return;
             }
 
-            Console.WriteLine("\nInput polynomial coefficients as integers separated by space "
-                + $"({MIN_COEFFICIENT}-{MAX_COEFFICIENT}):");
-            int[] polynomialCoefficients = ReadIntegersArray(" ", MIN_COEFFICIENT, MAX_COEFFICIENT);
-            string equation = DisplayPolynomialEquation(polynomialCoefficients);
+            SetupCoefficients();
 
-            Console.WriteLine("\nEquation to sort is:");
-            Console.WriteLine(equation);
+            SetupPolynomialVariable();
 
-            Console.WriteLine($"\nEnter x to calculate the evaluation ({MIN_X}-{MAX_X}):");
-            int x;
-            bool readIsSuccessful = ReadNumberInLimit(MIN_X, MAX_X, out x);
-            if (readIsSuccessful)
+            long result = -1;
+            string executionTime = MeasureTime(() =>
             {
-                _x = x;
-            }
-
-            _timer.Restart();
-            long result = calculator.Solve(x, polynomialCoefficients);
-            _timer.Stop();
+                result = calculator.Solve(_polynomialVariable, _polynomialCoefficients);
+            });
 
             Console.WriteLine("\nThe result is:");
             Console.WriteLine(result);
             Console.WriteLine("\nAn approximate execution time (more precise with bigger equations): "
-                + _timer.Elapsed + "ms.\n");
+                + executionTime + "ms.\n");
 
             Select();
         }
+
+
+        private int[] SetupCoefficients()
+        {
+            Console.WriteLine("\nInput polynomial coefficients as integers separated by space "
+                + $"({MIN_COEFFICIENT}-{MAX_COEFFICIENT}):");
+
+            int[] _polynomialCoefficients = ReadIntegersArray(" ", MIN_COEFFICIENT, MAX_COEFFICIENT);
+            string equation = DisplayPolynomialEquation(_polynomialCoefficients);
+
+            Console.WriteLine("\nEquation to sort is:");
+            Console.WriteLine(equation);
+            return _polynomialCoefficients;
+        }
+
+
+        private void SetupPolynomialVariable()
+        {
+            Console.WriteLine($"\nEnter x to calculate the evaluation ({MIN_X}-{MAX_X}):");
+
+            bool readIsSuccessful = ReadNumberInLimit(MIN_X, MAX_X, out int polynomialVariable);
+            if (readIsSuccessful)
+            {
+                _polynomialVariable = polynomialVariable;
+            }
+        }
+
 
         private string DisplayPolynomialEquation(int[] coefficients)
         {
@@ -88,11 +108,11 @@
 
                 if (i == 1)
                 {
-                    charge += "x";
+                    charge += "polynomialVariable";
                 }
                 else if (i > 1)
                 {
-                    charge += $"x^{i}";
+                    charge += $"polynomialVariable^{i}";
                 }
 
                 equation += sign + coefficient + charge;

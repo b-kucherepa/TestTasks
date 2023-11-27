@@ -32,8 +32,7 @@
                     }
 
                     //else it tries to parse the line...
-                    int element;
-                    if (int.TryParse(elementAsString, out element))
+                    if (int.TryParse(elementAsString, out int element))
                     {
                         //...and saves it, if successful:
                         array[i] = element;

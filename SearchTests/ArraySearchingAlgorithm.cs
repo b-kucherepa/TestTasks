@@ -2,7 +2,7 @@
 
 namespace TestTasks.SearchTests
 {
-    internal abstract class ArraySearchingAlgorithm
+    internal abstract class ArraySearchingAlgorithm : SearchingAlgorithm
     {
         public abstract string Find(int key, int[] source);
 

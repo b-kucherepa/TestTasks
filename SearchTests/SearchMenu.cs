@@ -1,15 +1,14 @@
-﻿using System.Drawing;
-using TestTasks.DIYClasses;
+﻿using TestTasks.DIYClasses;
 
 namespace TestTasks.SearchTests
 {
     internal class SearchMenu : TestMenu
     {
+        private const int SEARCH_COUNT_LIMIT = 100000;
+
         private static int _testNumber = 1;
         private static int[] _testArray;
         private static int _key;
-
-        private const int SEARCH_COUNT_LIMIT = 100000;
 
 
         public override void Select()
@@ -44,6 +43,81 @@ namespace TestTasks.SearchTests
 
         private void ArraySearch(ArraySearchingAlgorithm searchAlgorithm)
         {
+            SetupArray(SearchType.Array);
+
+            SetupSearchKey();
+
+            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
+
+            string searchResult = "";
+            string executionTime = MeasureTime(() =>
+            {
+                searchResult = searchAlgorithm.Find(_key, _testArray);
+            });
+
+            Console.WriteLine($"\n{searchResult}\n");
+
+            Console.WriteLine("\nAn approximate execution time (more precise with bigger arrays): "
+                + executionTime + "ms.\n");
+
+            _testNumber++;
+        }
+
+        private void TreeSearch(TreeSortingAlgorithm searchAlgorithm)
+        {
+            BinaryTree<DummyData> tree = SetupBinaryTree();
+
+            SetupSearchKey();
+
+            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
+
+            BinaryNode<DummyData>? result = null;
+            string searchPath = "";
+
+            string executionTime = MeasureTime(() =>
+            {
+                result = searchAlgorithm.Find(_key, tree, out searchPath);
+            });
+
+            if (result is null)
+            {
+                Console.WriteLine("A node with the required data key hasn't been found");
+            }
+            else
+            {
+                Console.WriteLine($"The key has been found in the node at the next position: {result.Data.Position}." +
+                    $"\nThe algorithm has followed next path:\n{searchPath} ");
+            }
+
+            Console.WriteLine("\nAn approximate execution time (more precise with bigger trees): "
+                + executionTime + "ms.\n");
+
+            _testNumber++;
+        }
+
+
+        enum SearchType
+        {
+            Array,
+            BinaryTree
+        }
+
+
+        private static void SetupArray(SearchType searchIn)
+        {
+            switch (searchIn)
+            {
+                case SearchType.Array:
+                    Console.WriteLine("\nTo search in the array:");
+                    break;
+                case SearchType.BinaryTree:
+                    Console.WriteLine("\nTo search in the array:");
+                    break;
+                default:
+                    throw new Exception("Unknown type of object to search in!");
+            }
+
+
             Console.WriteLine($"\nEnter the consecutive test array length (1-"
                 + SEARCH_COUNT_LIMIT + ") to generate one, ");
 
@@ -57,8 +131,7 @@ namespace TestTasks.SearchTests
                 Console.Write("or enter any other key to keep the same array:");
             }
 
-            int readNumber; 
-            bool readIsSuccessful = ReadNumberInLimit(1, SEARCH_COUNT_LIMIT, out readNumber);
+            bool readIsSuccessful = ReadNumberInLimit(1, SEARCH_COUNT_LIMIT, out int readNumber);
             if (readIsSuccessful)
             {
                 _testArray = GenerateSortedArray(readNumber);
@@ -69,56 +142,24 @@ namespace TestTasks.SearchTests
             }
 
             Program.PrintArrayData(_testArray, "\n-An array to search through:-");
+        }
 
-            Console.WriteLine($"\nEnter a key to find in the array:");
 
-            int key;
-            readIsSuccessful = ReadNumberInLimit(int.MinValue, int.MaxValue, out key);
+        private static void SetupSearchKey()
+        {
+            Console.WriteLine($"\nEnter a key to find in the data structure:");
+
+            bool readIsSuccessful = ReadNumberInLimit(int.MinValue, int.MaxValue, out int key);
             if (readIsSuccessful)
             {
                 _key = key;
             }
-
-            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
-
-            _timer.Restart();
-            string searchResult = searchAlgorithm.Find(_key, _testArray);
-            _timer.Stop();
-
-            Console.WriteLine($"\n{searchResult}\n");
-
-            Console.WriteLine("\nAn approximate execution time (more precise with bigger arrays): "
-                + _timer.Elapsed + "ms.\n");
-
-            _testNumber++;
         }
 
-        private void TreeSearch(TreeSortingAlgorithm searchAlgorithm)
+
+        private static BinaryTree<DummyData> SetupBinaryTree()
         {
-            Console.WriteLine($"\nEnter the consecutive test array length (1-"
-              + SEARCH_COUNT_LIMIT + ") to build a binary tree, ");
-
-            if (_testNumber == 1)
-            {
-                Console.Write("or enter any other key to build the tree from an array " +
-                    "of the default length 20:");
-            }
-            else
-            {
-                Console.Write("or enter any other key to keep the same array to build the tree from:");
-            }
-
-
-            int readNumber;
-            bool readIsSuccessful = ReadNumberInLimit(1, SEARCH_COUNT_LIMIT, out readNumber);
-            if (readIsSuccessful)
-            {
-                _testArray = GenerateSortedArray(readNumber);
-            }
-            else if (_testNumber == 1)
-            {
-                _testArray = GenerateSortedArray(20);
-            }
+            SetupArray(SearchType.BinaryTree);
 
             DummyData[] data = new DummyData[_testArray.Length];
 
@@ -130,38 +171,7 @@ namespace TestTasks.SearchTests
             BinaryTree<DummyData> tree = new(data);
 
             Program.PrintBinaryTree(tree, "\n-A tree to search through:-");
-
-
-            Console.WriteLine($"\nEnter a key to find in the array:");
-            int key;
-            readIsSuccessful = ReadNumberInLimit(int.MinValue, int.MaxValue, out key);
-            if (readIsSuccessful)
-            {
-                _key = key;
-            }
-
-            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
-
-            string searchPath;
-
-            _timer.Restart();
-            BinaryNode<DummyData>? result = searchAlgorithm.Find(key, tree, out searchPath);
-            _timer.Stop();
-
-            if (result is null)
-            {
-                Console.WriteLine("A node with the required data key hasn't been found");
-            }
-            else
-            {
-                Console.WriteLine($"The key has been found in the node at the next position: {result.Data.Position}." +
-                    $"\nThe algorithm has followed next path:\n{searchPath} ");
-            }
-
-            Console.WriteLine("\nAn approximate execution time (more precise with bigger trees): "
-    + _timer.Elapsed + "ms.\n");
-
-            _testNumber++;
+            return tree;
         }
     }
 }

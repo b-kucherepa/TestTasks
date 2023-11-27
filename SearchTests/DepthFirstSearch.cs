@@ -4,7 +4,7 @@ namespace TestTasks.SearchTests
 {
     /// <summary>
     /// This algorithm checks every branch from top to down consequentially to 
-    /// find out a node containing the required value.
+    /// find out int a node containing the required value.
     /// The only difference with breadth-first search is: it uses a stack instead of a queue.
     /// The current implementation searches in a binary tree, though it can be modified to be used with any graph.
     /// </summary>
@@ -55,12 +55,14 @@ namespace TestTasks.SearchTests
                 //...it checks if there are any unchecked children the current node has, and
                 //adds them into the queue to check them and their own children later.
                 //NB! Left and right child checks are switched to provide the left-to-right search direction:
-                if ((node.RightChild is not null) && (!visitedNodes.Contains(node.RightChild)))
+                bool rightChildExists = !(node.RightChild is null || visitedNodes.Contains(node.RightChild));
+                if (rightChildExists)
                 {
                     prospectedNodes.Push(node.RightChild);
                 }
 
-                if ((node.LeftChild is not null) && (!visitedNodes.Contains(node.LeftChild)))
+                bool leftChildExists = !(node.LeftChild is null || visitedNodes.Contains(node.LeftChild));
+                if (leftChildExists)
                 {
                     prospectedNodes.Push(node.LeftChild);
                 }

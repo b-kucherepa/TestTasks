@@ -64,7 +64,7 @@ namespace TestTasks.SearchTests
                     case 0:
                         return $"The key has been found at the index {middleIndex}";
                     default:
-                        return ("UNEXPECTED EXCEPTION: middle.CompareTo returned not 1, 0 or -1!");
+                        throw new Exception("middle.CompareTo returned not 1, 0 or -1!");
                 }
             }
             return "The key hasn't been found";

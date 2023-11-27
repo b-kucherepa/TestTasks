@@ -1,11 +1,9 @@
-using TestTasks.SortTests;
-using TestTasks.SearchTests;
-using TestTasks.DIYTests;
-using TestTasks.TestingQuestions;
-using TestTasks.PolynomialCalculations;
-
 using TestTasks.DIYClasses;
-using System.Collections.Generic;
+using TestTasks.DIYTests;
+using TestTasks.PolynomialCalculations;
+using TestTasks.SearchTests;
+using TestTasks.SortTests;
+using TestTasks.TestingQuestions;
 
 
 namespace TestTasks
@@ -63,8 +61,7 @@ namespace TestTasks
             Console.WriteLine();
         }
 
-        public static void PrintLinkedList(SinglyLinkedList<string> list,
-            string label)
+        public static void PrintLinkedList(SinglyLinkedList<string> list, string label)
         {
 
             Console.WriteLine();
@@ -79,13 +76,8 @@ namespace TestTasks
             Console.WriteLine();
         }
 
-        public static void PrintBinaryTree(BinaryTree<DummyData> tree,
-            string label)
+        public static void PrintBinaryTree(BinaryTree<DummyData> tree, string label)
         {
-            Console.WriteLine();
-            Console.WriteLine(label);
-            Console.WriteLine("Count: " + tree.Count);
-
             //acts the same way as the breadth-first search algorithm
             HashSet<BinaryNode<DummyData>> visitedNodes = new();
             Queue<BinaryNode<DummyData>> prospectedNodes = new();
@@ -93,17 +85,22 @@ namespace TestTasks
             prospectedNodes.Enqueue(tree.Root);
 
             int currentNodeInRow = 0;
-            int totalNodesInRow = 1;
+            int level = 1;
+
+            Console.WriteLine();
+            Console.WriteLine(label);
+            Console.WriteLine("Count: " + tree.Count);
+            Console.WriteLine($"\nLevel {level}:");
 
             while (prospectedNodes.Any())
             {
                 BinaryNode<DummyData> node = prospectedNodes.Dequeue();
 
-                if (currentNodeInRow == totalNodesInRow)
+                if (currentNodeInRow == Math.Pow(2, level-1))
                 {
-                    Console.WriteLine();
                     currentNodeInRow = 0;
-                    totalNodesInRow *= 2;
+                    level++;
+                    Console.WriteLine($"\nLevel {level}:");
                 }
 
                 Console.Write($"(#{node.Data.Position.ToString() ?? "X"}) {node.Data.Id.ToString() ?? "X"}, ");
