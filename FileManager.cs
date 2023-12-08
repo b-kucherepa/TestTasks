@@ -40,7 +40,7 @@
                     else
                     {
                         //...or aborts the reading because something is wrong with the file:
-                        Console.WriteLine("ERROR: a non-integer value found");
+                        ConsoleIO.PrintLine("ERROR: a non-integer value found");
                         return;
                     }
                 }

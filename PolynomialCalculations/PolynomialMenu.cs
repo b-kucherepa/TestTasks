@@ -7,19 +7,20 @@
         private const int MIN_COEFFICIENT = -10000;
         private const int MAX_COEFFICIENT = 10000;
 
-        private int[] _polynomialCoefficients = new int[0];
+        private int[] _polynomialCoefficients = GenerateRandomArray(5, 
+            MIN_COEFFICIENT, MAX_COEFFICIENT);
         private int _polynomialVariable = 0;
-
+        private int _innerTestNumber;
 
         public override void Select()
         {
-            Console.WriteLine("\nSelect a polynomial solve algorithm:");
-            Console.WriteLine("> Enter 1 to use primitive implementation,");
-            Console.WriteLine("> Enter 2 to use Horner scheme algorithm,");
-            Console.WriteLine("< Enter any other key to return.");
+            ConsoleIO.PrintLine("Select a polynomial solve algorithm:");
+            ConsoleIO.PrintLine("> Enter 1 to use primitive implementation,");
+            ConsoleIO.PrintLine("> Enter 2 to use Horner scheme algorithm,");
+            ConsoleIO.PrintLine("< Enter any other key to return.");
 
             PolynimialCalculator calculator;
-            switch (Console.ReadLine())
+            switch (ConsoleIO.Read())
             {
                 case "1":
                     calculator = new SimplePolynomialCalculator();
@@ -30,6 +31,7 @@
                 default:
                     return;
             }
+            ConsoleIO.EmptyLine();
 
             SetupCoefficients();
 
@@ -41,10 +43,14 @@
                 result = calculator.Solve(_polynomialVariable, _polynomialCoefficients);
             });
 
-            Console.WriteLine("\nThe result is:");
-            Console.WriteLine(result);
-            Console.WriteLine("\nAn approximate execution time (more precise with bigger equations): "
-                + executionTime + "ms.\n");
+            ConsoleIO.PrintLine("The result is:");
+            ConsoleIO.PrintLine(result);
+            ConsoleIO.EmptyLine();
+            ConsoleIO.PrintLine("An approximate execution time (more precise with bigger equations): "
+                + executionTime + "ms.");
+            ConsoleIO.EmptyLine();
+
+            _innerTestNumber++;
 
             Select();
         }
@@ -52,27 +58,56 @@
 
         private int[] SetupCoefficients()
         {
-            Console.WriteLine("\nInput polynomial coefficients as integers separated by space "
-                + $"({MIN_COEFFICIENT}-{MAX_COEFFICIENT}):");
+            ConsoleIO.PrintLine("Input polynomial coefficients as integers separated by space "
+                + $"({MIN_COEFFICIENT}-{MAX_COEFFICIENT}), ");
 
-            int[] _polynomialCoefficients = ReadIntegersArray(" ", MIN_COEFFICIENT, MAX_COEFFICIENT);
+            if (_innerTestNumber == 1)
+            {
+                ConsoleIO.PrintLine("or enter any other key to use a sequence " +
+                    $"of the default length {_polynomialCoefficients.Length}:");
+            }
+            else
+            {
+                ConsoleIO.PrintLine("or enter any other key to keep the same array:");
+            }
+
+            bool isSuccessful = ConsoleIO.ReadIntegersArray(" ", MIN_COEFFICIENT, MAX_COEFFICIENT, out int[] array);
+            if (isSuccessful) 
+            {
+                _polynomialCoefficients = array;
+            }
+
             string equation = DisplayPolynomialEquation(_polynomialCoefficients);
 
-            Console.WriteLine("\nEquation to sort is:");
-            Console.WriteLine(equation);
+            ConsoleIO.EmptyLine();
+            ConsoleIO.PrintLine("Equation to sort is:");
+            ConsoleIO.PrintLine(equation);
+            ConsoleIO.EmptyLine();
             return _polynomialCoefficients;
         }
 
 
         private void SetupPolynomialVariable()
         {
-            Console.WriteLine($"\nEnter x to calculate the evaluation ({MIN_X}-{MAX_X}):");
+            ConsoleIO.PrintLine($"Enter x to calculate the evaluation ({MIN_X}-{MAX_X}), ");
+            
+            if (_innerTestNumber == 1)
+            {
+                ConsoleIO.PrintLine("or enter any other key to use the default value of " +
+                    $"{_polynomialVariable}:");
+            }
+            else
+            {
+                ConsoleIO.PrintLine("or enter any other key to keep the same value:");
+            }
 
-            bool readIsSuccessful = ReadNumberInLimit(MIN_X, MAX_X, out int polynomialVariable);
+            bool readIsSuccessful = ConsoleIO.ReadNumberInLimit(MIN_X, MAX_X, out int polynomialVariable);
             if (readIsSuccessful)
             {
                 _polynomialVariable = polynomialVariable;
             }
+
+            ConsoleIO.EmptyLine();
         }
 
 
@@ -108,15 +143,17 @@
 
                 if (i == 1)
                 {
-                    charge += "polynomialVariable";
+                    charge += "x";
                 }
                 else if (i > 1)
                 {
-                    charge += $"polynomialVariable^{i}";
+                    charge += $"x^{i}";
                 }
 
                 equation += sign + coefficient + charge;
             }
+
+            ConsoleIO.EmptyLine();
 
             return equation;
         }

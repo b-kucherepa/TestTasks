@@ -1,4 +1,4 @@
-﻿using TestTasks.DIYClasses;
+﻿using TestTasks.DIYClasses.Trees;
 
 namespace TestTasks.SearchTests
 {
@@ -7,20 +7,20 @@ namespace TestTasks.SearchTests
         private const int SEARCH_COUNT_LIMIT = 100000;
 
         private static int _testNumber = 1;
-        private static int[] _testArray;
+        private static int[] _testArray = GenerateRandomArray(20, SEARCH_COUNT_LIMIT);
         private static int _key;
 
 
         public override void Select()
         {
-            Console.WriteLine("\nSelect a search algorithm to test:");
-            Console.WriteLine("> Enter 1 to use naive consecutive search,");
-            Console.WriteLine("> Enter 2 to use binary search,");
-            Console.WriteLine("> Enter 3 to use BFS (breadth-first search),");
-            Console.WriteLine("> Enter 4 to use DFS (depth-first search),");
-            Console.WriteLine("< Enter any other key to return.");
+            ConsoleIO.PrintLine("Select a search algorithm to test:");
+            ConsoleIO.PrintLine("> Enter 1 to use naive consecutive search,");
+            ConsoleIO.PrintLine("> Enter 2 to use binary search,");
+            ConsoleIO.PrintLine("> Enter 3 to use BFS (breadth-first search),");
+            ConsoleIO.PrintLine("> Enter 4 to use DFS (depth-first search),");
+            ConsoleIO.PrintLine("< Enter any other key to return.");
 
-            switch (Console.ReadLine())
+            switch (ConsoleIO.Read())
             {
                 case "1":
                     ArraySearch(new LinearSearch());
@@ -37,6 +37,7 @@ namespace TestTasks.SearchTests
                 default:
                     return;
             }
+            ConsoleIO.EmptyLine();
 
             Select();
         }
@@ -47,7 +48,8 @@ namespace TestTasks.SearchTests
 
             SetupSearchKey();
 
-            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
+            ConsoleIO.PrintLine(">>>TEST NUMBER " + _testNumber + "<<<");
+            ConsoleIO.EmptyLine();
 
             string searchResult = "";
             string executionTime = MeasureTime(() =>
@@ -55,13 +57,16 @@ namespace TestTasks.SearchTests
                 searchResult = searchAlgorithm.Find(_key, _testArray);
             });
 
-            Console.WriteLine($"\n{searchResult}\n");
+            ConsoleIO.PrintLine($"{searchResult}");
+            ConsoleIO.EmptyLine();
 
-            Console.WriteLine("\nAn approximate execution time (more precise with bigger arrays): "
-                + executionTime + "ms.\n");
+            ConsoleIO.PrintLine("An approximate execution time (more precise with bigger arrays): "
+                + executionTime + "ms.");
+            ConsoleIO.EmptyLine();
 
             _testNumber++;
         }
+
 
         private void TreeSearch(TreeSortingAlgorithm searchAlgorithm)
         {
@@ -69,7 +74,8 @@ namespace TestTasks.SearchTests
 
             SetupSearchKey();
 
-            Console.WriteLine("\n>>>TEST NUMBER " + _testNumber + "<<<\n");
+            ConsoleIO.PrintLine(">>>TEST NUMBER " + _testNumber + "<<<");
+            ConsoleIO.EmptyLine();
 
             BinaryNode<DummyData>? result = null;
             string searchPath = "";
@@ -81,79 +87,22 @@ namespace TestTasks.SearchTests
 
             if (result is null)
             {
-                Console.WriteLine("A node with the required data key hasn't been found");
+                ConsoleIO.PrintLine("A node with the required data key hasn't been found");
             }
             else
             {
-                Console.WriteLine($"The key has been found in the node at the next position: {result.Data.Position}." +
-                    $"\nThe algorithm has followed next path:\n{searchPath} ");
+                ConsoleIO.PrintLine($"The key has been found in the node at the next position: " +
+                    $"{result.Data.Position}.");
+                ConsoleIO.PrintLine("The algorithm has followed next path:");
+                ConsoleIO.PrintLine($"{searchPath}");
             }
+            ConsoleIO.EmptyLine();
 
-            Console.WriteLine("\nAn approximate execution time (more precise with bigger trees): "
-                + executionTime + "ms.\n");
+            ConsoleIO.PrintLine("An approximate execution time (more precise with bigger trees): "
+                + executionTime + "ms.");
+            ConsoleIO.EmptyLine();
 
             _testNumber++;
-        }
-
-
-        enum SearchType
-        {
-            Array,
-            BinaryTree
-        }
-
-
-        private static void SetupArray(SearchType searchIn)
-        {
-            switch (searchIn)
-            {
-                case SearchType.Array:
-                    Console.WriteLine("\nTo search in the array:");
-                    break;
-                case SearchType.BinaryTree:
-                    Console.WriteLine("\nTo search in the array:");
-                    break;
-                default:
-                    throw new Exception("Unknown type of object to search in!");
-            }
-
-
-            Console.WriteLine($"\nEnter the consecutive test array length (1-"
-                + SEARCH_COUNT_LIMIT + ") to generate one, ");
-
-            if (_testNumber == 1)
-            {
-                Console.Write("or enter any other key to use an array " +
-                    "of the default length 20:");
-            }
-            else
-            {
-                Console.Write("or enter any other key to keep the same array:");
-            }
-
-            bool readIsSuccessful = ReadNumberInLimit(1, SEARCH_COUNT_LIMIT, out int readNumber);
-            if (readIsSuccessful)
-            {
-                _testArray = GenerateSortedArray(readNumber);
-            }
-            else if (_testNumber == 1)
-            {
-                _testArray = GenerateSortedArray(20);
-            }
-
-            Program.PrintArrayData(_testArray, "\n-An array to search through:-");
-        }
-
-
-        private static void SetupSearchKey()
-        {
-            Console.WriteLine($"\nEnter a key to find in the data structure:");
-
-            bool readIsSuccessful = ReadNumberInLimit(int.MinValue, int.MaxValue, out int key);
-            if (readIsSuccessful)
-            {
-                _key = key;
-            }
         }
 
 
@@ -170,8 +119,74 @@ namespace TestTasks.SearchTests
             //creates a tree from the array:
             BinaryTree<DummyData> tree = new(data);
 
-            Program.PrintBinaryTree(tree, "\n-A tree to search through:-");
+            ConsoleIO.PrintBinaryTree(tree, "-A tree to search through:-");
+            ConsoleIO.EmptyLine();
             return tree;
+        }
+
+
+        enum SearchType
+        {
+            Array,
+            BinaryTree
+        }
+
+        private static void SetupArray(SearchType searchIn)
+        {
+            switch (searchIn)
+            {
+                case SearchType.Array:
+                    ConsoleIO.PrintLine("To search in a array:");
+                    break;
+                case SearchType.BinaryTree:
+                    ConsoleIO.PrintLine("To search in a binary tree:");
+                    break;
+                default:
+                    throw new Exception("Unknown type of object to search in!");
+            }
+            ConsoleIO.EmptyLine();
+
+
+            ConsoleIO.PrintLine($"Enter the consecutive test array length (1-"
+                + SEARCH_COUNT_LIMIT + ") to generate one, ");
+            if (_testNumber == 1)
+            {
+                ConsoleIO.PrintLine("or enter any other key to use an array " +
+                    $"of the default length {_testArray.Length}:");
+            }
+            else
+            {
+                ConsoleIO.PrintLine("or enter any other key to keep the same array:");
+            }
+
+            bool readIsSuccessful = ConsoleIO.ReadNumberInLimit(1, SEARCH_COUNT_LIMIT, 
+                out int readNumber);
+            if (readIsSuccessful)
+            {
+                _testArray = GenerateSortedArray(readNumber);
+            }
+            else if (_testNumber == 1)
+            {
+                _testArray = GenerateSortedArray(20);
+            }
+            ConsoleIO.EmptyLine();
+
+            ConsoleIO.PrintArrayData(_testArray, "-An array to search through:-");
+            ConsoleIO.EmptyLine();
+        }
+
+
+        private static void SetupSearchKey()
+        {
+            ConsoleIO.PrintLine($"Enter a key to find in the data structure:");
+
+            bool readIsSuccessful = ConsoleIO.ReadNumberInLimit(int.MinValue, int.MaxValue, 
+                out int key);
+            if (readIsSuccessful)
+            {
+                _key = key;
+            }
+            ConsoleIO.EmptyLine();
         }
     }
 }

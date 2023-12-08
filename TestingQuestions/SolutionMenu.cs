@@ -4,20 +4,17 @@
     {
         public override void Select()
         {
-
-            Console.WriteLine();
-            Console.WriteLine("Select a solution to test:");
-            Console.WriteLine("> Enter 1 for string characters uniqueness check " +
+            ConsoleIO.PrintLine("Select a solution to test:");
+            ConsoleIO.PrintLine("> Enter 1 for string characters uniqueness check " +
                 "(using hash set),");
-            Console.WriteLine("> Enter 2 for string characters uniqueness check " +
+            ConsoleIO.PrintLine("> Enter 2 for string characters uniqueness check " +
                 "(using no special data structures),");
-            Console.WriteLine("> Enter 3 to count lower case letters,");
-            Console.WriteLine("< Enter any other key to return.");
-            Console.WriteLine();
+            ConsoleIO.PrintLine("> Enter 3 to count lower case letters,");
+            ConsoleIO.PrintLine("< Enter any other key to return.");
 
             ITestTask task;
 
-            switch (Console.ReadLine())
+            switch (ConsoleIO.Read())
             {
                 case "1":
                     task = new StringsAndArrays.UniquenessWithHash();
@@ -31,6 +28,7 @@
                 default:
                     return;
             }
+            ConsoleIO.EmptyLine();
 
             task.Begin();
             Select();

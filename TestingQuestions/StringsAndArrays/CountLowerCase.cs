@@ -4,12 +4,14 @@
     {
         public void Begin()
         {
-            Console.WriteLine("\nEnter a line to count lower case letters in it:\n");
+            ConsoleIO.PrintLine("Enter a line to count lower case letters in it:");
 
-            string inputString = Console.ReadLine() ?? "";
+            string inputString = ConsoleIO.Read() ?? "";
+            ConsoleIO.EmptyLine();
 
-            Console.WriteLine("\nThe string contains " + GetLowerCaseCount(inputString)
-                + " lower case letter(s).\n");
+            ConsoleIO.PrintLine("The string contains " + GetLowerCaseCount(inputString)
+                + " lower case letter(s).");
+            ConsoleIO.EmptyLine();
         }
 
         private int GetLowerCaseCount(string s)

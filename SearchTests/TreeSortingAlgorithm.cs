@@ -1,4 +1,4 @@
-﻿using TestTasks.DIYClasses;
+﻿using TestTasks.DIYClasses.Trees;
 
 namespace TestTasks.SearchTests
 {

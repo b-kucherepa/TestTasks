@@ -1,4 +1,4 @@
-﻿namespace TestTasks.DIYClasses
+﻿namespace TestTasks.DIYClasses.Trees
 {
     public class BinaryNode<T>
     {

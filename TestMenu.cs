@@ -9,6 +9,7 @@ namespace TestTasks
 
         public abstract void Select();
 
+
         internal static string MeasureTime(MethodToSample method)
         {
             Stopwatch timer = new();
@@ -21,56 +22,20 @@ namespace TestTasks
         }
 
 
-        internal static bool ReadNumberInLimit(int min, int max, out int retrievedNumber)
+        internal static int[] GenerateRandomArray(int length, int maxLimit)
         {
-            Console.WriteLine("");
-            string? input = Console.ReadLine();
-            bool isSuccessful = int.TryParse(input, out int number);
-            if ((isSuccessful) && (number >= min) && (number <= max))
-            {
-                retrievedNumber = number;
-                return true;
-            }
-            else
-            {
-                retrievedNumber = 0;
-                return false;
-            }
+            return GenerateRandomArray (0, length, maxLimit);
         }
 
 
-        internal static int[] ReadIntegersArray(string separator, int min, int max)
-        {
-            Console.WriteLine("");
-            string? input = Console.ReadLine();
-            string[] elements = input.Split(separator);
-            int[] integers = new int[elements.Length];
-
-            for (int i = 0; i < integers.Length; i++)
-            {
-                bool isSuccessful = int.TryParse(elements[i], out int number);
-                if ((isSuccessful) && (number >= min) && (number <= max))
-                {
-                    integers[integers.Length - i - 1] = number;
-                }
-                else
-                {
-                    return new int[0];
-                }
-            }
-
-            return integers;
-        }
-
-
-        internal static int[] GenerateRandomArray(int length, int maxElement)
+        internal static int[] GenerateRandomArray(int length, int minElement, int maxLimit)
         {
             var _testArray = new int[length];
 
             Random random = new();
             for (int i = 0; i < _testArray.Length; i++)
             {
-                _testArray[i] = random.Next(maxElement);
+                _testArray[i] = random.Next(minElement, maxLimit);
             }
 
             return _testArray;

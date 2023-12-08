@@ -19,6 +19,7 @@ namespace TestTasks.SearchTests
     /// </remarks>
     internal class BinarySearch : ArraySearchingAlgorithm
     {
+        //an implementation which illustrates usage of the pretty visual integral numeric types comparison operators:
         public override string Find(int key, int[] array)
         {
             int startIndex = 0;
@@ -44,6 +45,8 @@ namespace TestTasks.SearchTests
             return "The key hasn't been found";
         }
 
+        //an implementation which illustrates generic approach to comparison for any type
+        //(don't forget to implement IComparable.CompareTo() method for a custom class!)
         public override string Find(string key, string[] array)
         {
             int startIndex = 0;
@@ -64,7 +67,7 @@ namespace TestTasks.SearchTests
                     case 0:
                         return $"The key has been found at the index {middleIndex}";
                     default:
-                        throw new Exception("middle.CompareTo returned not 1, 0 or -1!");
+                        throw new Exception("middle.CompareTo returned not 1, 0, or -1!");
                 }
             }
             return "The key hasn't been found";
